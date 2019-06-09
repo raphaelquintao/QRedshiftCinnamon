@@ -2,7 +2,7 @@ QRedshift
 ===
 An Cinnamon applet that sets brightness, gamma levels and color temperature with Redshift.
 
-![](screenshot1.png)
+![](screenshot.png)
 
 ## Features
 * Powerfull Interface.
