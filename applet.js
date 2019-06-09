@@ -13,8 +13,6 @@ const Signals = imports.signals;
 
 const UUID = "qredshift@quintao";
 
-// const AppletDir = imports.ui.appletManager.applets[UUID].js;
-// const VERSION = AppletDir.QUtils.VERSION;
 
 global.DEBUG = true;
 
@@ -51,7 +49,7 @@ class QRedshift extends Applet.TextIconApplet {
             adjustmentMethod: 'randr',
             labelScrollAction: 'disabled',
             iconLabel: false,
-            iconLabelAlways: true,
+            iconLabelAlways: false,
             
             dayTemp: 6500,
             dayBrightness: 1,
@@ -218,8 +216,6 @@ class QRedshift extends Applet.TextIconApplet {
                 // qLOG('success', this.opt);
                 return true;
             } else {
-                // qLOG('error', out);
-                
                 return false;
             }
         } catch (e) {

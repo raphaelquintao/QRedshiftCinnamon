@@ -73,7 +73,7 @@
     "default": "randr",
     "description": "Adjustment Method",
     "options": {
-      "needload": "randr",
+      "needload": "randr2",
       "randr": "randr",
       "vidmode": "vidmode"
     },

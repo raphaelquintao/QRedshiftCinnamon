@@ -22,7 +22,6 @@ const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
 
 
-const VERSION = 0.2;
 
 
 /** @exports QUtils.qLOG */

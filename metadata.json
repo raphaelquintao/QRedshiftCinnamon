@@ -1,5 +1,6 @@
 {
   "description": "Change screen color temperature with Redshift.\nRequires Redshift: sudo apt-get install redshift",
   "uuid": "qredshift@quintao",
+  "version": "1.2.0",
   "name": "QRedshift"
 }
