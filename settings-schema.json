@@ -95,7 +95,7 @@
   "iconLabel": {
     "type": "checkbox",
     "default": false,
-    "description": "Show Icon Label"
+    "description": "Show Label"
   },
   "dayTemp": {
     "type": "spinbutton",
@@ -120,7 +120,7 @@
     "default": 1,
     "min": 1,
     "max": 5,
-    "units": "%",
+    "units": "",
     "step": 0.01,
     "description": "Gamma"
   },
