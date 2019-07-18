@@ -4,6 +4,7 @@ An Cinnamon applet that sets brightness, gamma levels and color temperature with
 
 ![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot1.png)
 
+
 ## Features
 * Powerfull Interface.
 * Scroll actions on panel icon.
