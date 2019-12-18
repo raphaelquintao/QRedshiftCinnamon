@@ -20,6 +20,11 @@ A Cinnamon applet that sets brightness, gamma levels and color temperature with 
 2. Extract .zip archive to `~/.local/share/cinnamon/applets`
 3. Enable the applet in Cinnamon settings
 
+## Changelog
+* 1.4
+  - Fixed icon scale.
+  - Added suport to version 4.3 and 4.4
+
 ## Screenshots
 ![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot2.png)
 
