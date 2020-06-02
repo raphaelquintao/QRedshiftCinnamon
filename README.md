@@ -26,6 +26,7 @@ Original Repository: [https://github.com/raphaelquintao/QRedshift](https://githu
 
 ## Changelog
 * 1.5.1
+  - Update night brightness on scrolling.
   - Added support to version 4.6.
   - Added translations:
     - Bulgarian by [@spacy01](https://github.com/spacy01 "@spacy01 on Github")
