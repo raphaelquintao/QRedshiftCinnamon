@@ -25,6 +25,13 @@ Original Repository: [https://github.com/raphaelquintao/QRedshift](https://githu
 5. Make sure you remove redshift-gtk `sudo apt-get remove redshift-gtk`
 
 ## Changelog
+* 1.5.1
+  - Added support to version 4.6.
+  - Added translations:
+    - Bulgarian by [@spacy01](https://github.com/spacy01 "@spacy01 on Github")
+    - German by [@OzzieIsaacs](https://github.com/OzzieIsaacs "@OzzieIsaacs on Github")
+    - Romanian by [@AndreiMiculita](https://github.com/AndreiMiculita "@AndreiMiculita on Github")
+    
 * 1.5
   - Added keyboard shortcut to toggle On/Off `<Control>End`
   - Added localization support.
@@ -32,6 +39,9 @@ Original Repository: [https://github.com/raphaelquintao/QRedshift](https://githu
     - French by [@claudiux](https://github.com/claudiux "@claudiux on Github")
     - Swedish by [@eson57](https://github.com/eson57 "@eson57 on Github")
     - Portuguese by [@raphaelquintao](https://github.com/raphaelquintao "@raphaelquintao on Github")
+    - Bulgarian by [@spacy01](https://github.com/spacy01 "@spacy01 on Github")
+    - German by [@OzzieIsaacs](https://github.com/OzzieIsaacs "@OzzieIsaacs on Github")
+    - Romanian by [@AndreiMiculita](https://github.com/AndreiMiculita "@AndreiMiculita on Github")
 * 1.4
   - Fixed icon scale.
   - Added support to version 4.3 and 4.4
