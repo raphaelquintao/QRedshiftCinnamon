@@ -203,6 +203,14 @@ msgstr "Aumentar brilho"
 msgid "Decrease brightness level"
 msgstr "Diminuir brilho"
 
+#. settings-schema.json->keyTempUp->description
+msgid "Increase temperature level"
+msgstr "Aumentar temperatura"
+
+#. settings-schema.json->keyTempDown->description
+msgid "Decrease temperature level"
+msgstr "Diminuir temperatura"
+
 #. settings-schema.json->labelScrollAction->options
 msgid "Bright"
 msgstr "Brilho"
