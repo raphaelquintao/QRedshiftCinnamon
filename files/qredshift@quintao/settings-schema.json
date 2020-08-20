@@ -2,7 +2,7 @@
   "layout": {
     "type": "layout",
     "pages": ["panel-options", "panel-location", "panel-shortcuts"],
-    
+
     "panel-options": {
       "type": "page",
       "title": "Settings",
@@ -27,9 +27,9 @@
         "info-section"
       ]
     },
-    
-    
-    
+
+
+
     "info-section": {
       "type": "section",
       "title": "Tips",
@@ -38,7 +38,7 @@
         "textInfo"
       ]
     },
-    
+
     "opt-section": {
       "type": "section",
       "title": "Options",
@@ -51,7 +51,7 @@
         "iconLabel"
       ]
     },
-    
+
     "day-section": {
       "type": "section",
       "title": "Day Settings",
@@ -61,7 +61,7 @@
         "gammaMix"
       ]
     },
-    
+
     "night-section": {
       "type": "section",
       "title": "Night Settings",
@@ -69,15 +69,17 @@
         "enabledNight", "nightTemp", "nightBrightness"
       ]
     },
-    
+
     "keybind-section": {
       "type": "section",
       "title": "Key Bindings",
       "keys": [
-        "keyToggle"
+        "keyToggle",
+        "keyBrightnessUp",
+        "keyBrightnessDown"
       ]
     },
-    
+
     "location-section": {
       "type": "section",
       "title": "Location Settings",
@@ -86,7 +88,7 @@
       ]
     }
   },
-  
+
   "enabled": {
     "type": "checkbox",
     "default": false,
@@ -137,13 +139,25 @@
     "default": false,
     "description": "Show Label"
   },
-  
+
   "keyToggle" : {
     "type" : "keybinding",
     "description" : "On/Off",
     "default" : "<Control>End"
   },
-  
+
+  "keyBrightnessUp" : {
+    "type" : "keybinding",
+    "description" : "Increase brightness level",
+    "default" : "<Alt>PageUp"
+  },
+
+  "keyBrightnessDown" : {
+    "type" : "keybinding",
+    "description" : "Decrease level",
+    "default" : "<Alt>PageDown"
+  },
+
   "dayTemp": {
     "type": "spinbutton",
     "default": 5900,
@@ -171,7 +185,7 @@
     "step": 0.01,
     "description": "Gamma"
   },
-  
+
   "enabledNight": {
     "type": "checkbox",
     "default": false,
@@ -197,7 +211,7 @@
     "step": 1,
     "description": "Brightness"
   },
-  
+
   "locationRemote": {
     "type": "checkbox",
     "default": true,
@@ -233,5 +247,5 @@
     "type": "label",
     "description": "If you like and use this applet take the time to visit it's page on Cinnamon Spices and give it a star. You only need a github account to do this."
   }
-  
+
 }
