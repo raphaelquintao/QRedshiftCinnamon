@@ -208,6 +208,14 @@ msgstr ""
 msgid "Decrease temperature level"
 msgstr ""
 
+#. settings-schema.json->keyGammaUp->description
+msgid "Increase gamma level"
+msgstr ""
+
+#. settings-schema.json->keyGammaDown->description
+msgid "Decrease gamma level"
+msgstr ""
+
 #. settings-schema.json->labelScrollAction->options
 msgid "Bright"
 msgstr ""

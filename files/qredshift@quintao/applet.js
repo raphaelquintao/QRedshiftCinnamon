@@ -68,6 +68,8 @@ class QRedshift extends Applet.TextIconApplet {
             keyBrightnessDown: '',
             keyTempUp: '',
             keyTempDown: '',
+            keyGammaUp: '',
+            keyGammaDown: '',
             
             dayTemp: 6500,
             dayBrightness: 1,
@@ -123,6 +125,9 @@ class QRedshift extends Applet.TextIconApplet {
         this.settings.bind("keyBrightnessDown", "keyBrightnessDown", this.onKeyChanged.bind(this));
         this.settings.bind("keyTempUp", "keyTempUp", this.onKeyChanged.bind(this));
         this.settings.bind("keyTempDown", "keyTempDown", this.onKeyChanged.bind(this));
+        this.settings.bind("keyGammaUp", "keyGammaUp", this.onKeyChanged.bind(this));
+        this.settings.bind("keyGammaDown", "keyGammaDown", this.onKeyChanged.bind(this));
+
         
         if (!this.verifyVersion()) {
             qLOG('Redshift required!');
@@ -348,6 +353,14 @@ class QRedshift extends Applet.TextIconApplet {
             this.nc_Slider._setValueEmit(this.nc_Slider.value - this.nc_Slider.STEP);
         });
         
+        Main.keybindingManager.addHotKey("keyGammaUp", this.opt.keyGammaUp, (event) => {
+            this.gm_Slider._setValueEmit(this.gm_Slider.value + this.gm_Slider.STEP);
+        });
+
+        Main.keybindingManager.addHotKey("keyGammaDown", this.opt.keyGammaDown, (event) => {
+            this.gm_Slider._setValueEmit(this.gm_Slider.value - this.gm_Slider.STEP);
+        });
+
         Main.keybindingManager.addHotKey("keyToggle", this.opt.keyToggle, (event) => {
             this.opt.enabled = !this.opt.enabled;
             this.enabledDay.setToggleState(this.opt.enabled);
@@ -596,6 +609,8 @@ class QRedshift extends Applet.TextIconApplet {
         Main.keybindingManager.removeHotKey("keyBrightnessDown");
         Main.keybindingManager.removeHotKey("keyTempUp");
         Main.keybindingManager.removeHotKey("keyTempDown");
+        Main.keybindingManager.removeHotKey("keyGammaUp");
+        Main.keybindingManager.removeHotKey("keyGammaDown");
         if (this.timeout) {
             Mainloop.source_remove(this.timeout);
             this.timeout = undefined;
