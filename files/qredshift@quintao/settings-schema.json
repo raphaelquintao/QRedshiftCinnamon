@@ -109,7 +109,7 @@
   "autoUpdateInterval": {
     "type": "spinbutton",
     "dependency": "autoUpdate=true",
-    "default": 10,
+    "default": 20,
     "min": 5,
     "max": 1800,
     "units": "Sec.",

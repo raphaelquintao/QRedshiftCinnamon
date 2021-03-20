@@ -282,10 +282,6 @@ class QRedshift extends Applet.TextIconApplet {
         
     }
     
-    debug() {
-        qLOG("DEBUG", arguments);
-    }
-    
     check_period() {
         let date = new Date();
         let d = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), 0);
@@ -301,7 +297,7 @@ class QRedshift extends Applet.TextIconApplet {
         } else if (date_s > date_e && d >= date_s) {
             night = d >= date_s;
         } else {
-            night = d <= date_e;
+            night = d < date_e;
         }
         if (d.getTime() == date_s.getTime()) {
             percent = date.getSeconds() / 60;
