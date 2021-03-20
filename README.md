@@ -33,8 +33,8 @@ Original Repository: [https://github.com/raphaelquintao/QRedshift](https://githu
 
 ## Changelog
 * 1.6.0
-    - Added manual night-time option
-    - Fixed some issues with Debian
+    - Added manual night-time option.
+    - Fixed some issues with Debian.
 * 1.5.5
     - Fixed icon blinking when using symbolic icon.
 * 1.5.4
