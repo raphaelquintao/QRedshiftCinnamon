@@ -814,9 +814,9 @@ class QRedshift extends Applet.TextIconApplet {
             this.opt.period = '-';
             
             // }
-            this.setIcon();
             this.updateTooltip();
             this.setInfo();
+            this.setIcon();
         }
         
     }
@@ -824,7 +824,7 @@ class QRedshift extends Applet.TextIconApplet {
     setInfo() {
         let period = this.opt.period + "";
         
-        if (this.opt.manualNightTime) {
+        if (this.opt.enabled && this.opt.manualNightTime) {
             if (this.check_period().is_night) period = _("Night");
             else period = _("Day");
         }
