@@ -270,7 +270,7 @@ class QRedshift extends Applet.TextIconApplet {
             this.menu = this.appMenu;
             
             // Disable Redshift
-            this.disableRedshiftService()
+            this.disableRedshiftService();
             
             // Load Informations
             this.setAdjustmentMethods(false);
@@ -749,6 +749,21 @@ class QRedshift extends Applet.TextIconApplet {
         this.setIcon();
     }
     
+    doCommandSync(command) {
+        // qLOG('QRedshift CMD',  command);
+        
+        let [success, out] = GLib.spawn_command_line_sync(command);
+        if (!success || out == null) return;
+        let resp = out.toString();
+        
+        let period = resp.match(/Period:.+/g);
+        if (period && period[0]) {
+            this.opt.period = period[0].split(':')[1].trim();
+        }
+        this.updateTooltip();
+        this.setInfo();
+        this.setIcon();
+    }
     
     redShiftUpdate() {
         Util.killall('redshift');
@@ -790,7 +805,7 @@ class QRedshift extends Applet.TextIconApplet {
             
             // Util.spawnCommandLine(cmd);
             this.set_applet_icon_symbolic_path(this.metadata.path + ICON_ON);
-            this.doCommand(cmd);
+            this.doCommandSync(cmd);
             
         } else {
             // if(this.opt.period !== '' ){
