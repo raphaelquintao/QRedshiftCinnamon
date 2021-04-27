@@ -139,6 +139,7 @@ class QRedshift extends Applet.TextIconApplet {
         this.settings.bind('nightBrightness', 'nightBrightness', this.onSettChange.bind(this));
         
         this.settings.bind('nightTimeStart', 'nightStart', (value) => {
+            // For some reason this callback for timechoorser is called on every setting update so this workaround is required.
             if (this.opt.nightStart.h !== this.time.nightStart.h || this.opt.nightStart.m !== this.time.nightStart.m) {
                 this.time.nightStart.h = this.opt.nightStart.h;
                 this.time.nightStart.m = this.opt.nightStart.m;
@@ -148,6 +149,7 @@ class QRedshift extends Applet.TextIconApplet {
             }
         });
         this.settings.bind('nightTimeEnd', 'nightEnd', (value) => {
+            // For some reason this callback for timechoorser is called on every setting update so this workaround is required.
             if (this.opt.nightEnd.h !== this.time.nightEnd.h || this.opt.nightEnd.m !== this.time.nightEnd.m) {
                 this.time.nightEnd.h = this.opt.nightEnd.h;
                 this.time.nightEnd.m = this.opt.nightEnd.m;
