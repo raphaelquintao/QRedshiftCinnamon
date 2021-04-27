@@ -102,13 +102,14 @@
   },
   "autoUpdate": {
     "type": "checkbox",
+    "dependency": "enabledNight=true",
     "default": true,
     "description": "Auto Update",
     "tooltip": "Continuously adjust color temperature"
   },
   "autoUpdateInterval": {
     "type": "spinbutton",
-    "dependency": "autoUpdate=true",
+    "dependency": "enabledNight=true",
     "default": 20,
     "min": 5,
     "max": 1800,
