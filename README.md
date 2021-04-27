@@ -34,8 +34,8 @@ Original Repository: [https://github.com/raphaelquintao/QRedshift](https://githu
 ## Changelog
 * 1.7.0
     - Fixed issues with asynchronous command calls.
-        - The main redshift call is synchronous again, so the cinnamon will show the annoying message again: ***This applet contains function calls that could potentially cause Cinnamon to crash or freeze***.
-        - I noticed that on some (slow?) computers, many asynchronous calls cause the application to freeze.
+        - Main redshift call reverted to synchronous, so the cinnamon will show the annoying message again: ***This applet contains function calls that could potentially cause Cinnamon to crash or freeze***.
+        - I noticed that on some (slow?) computers many asynchronous calls cause the application to freeze.
     - Added translations:
         - Spanish by [RichLuna](https://github.com/RichLuna "@RichLuna on Github")
 * 1.6.0
