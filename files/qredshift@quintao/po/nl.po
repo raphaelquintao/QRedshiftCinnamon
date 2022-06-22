@@ -102,11 +102,9 @@ msgid "QRedshift"
 msgstr "QRedshift"
 
 #. metadata.json->description
-msgid ""
-"Sets brightness, gamma levels and color temperature with Redshift. "
+msgid "Sets brightness, gamma levels and color temperature with Redshift. "
 "This applet conflicts with redshift-gtk, make sure you remove it."
-msgstr ""
-"Stel de helderheid, kleurtemperatuur en het gamma van Redshift in. "
+msgstr "Stel de helderheid, kleurtemperatuur en het gamma van Redshift in. "
 "Let op: dit werkbalkhulpje botst met redshift-gtk, dus zorg er voor dat dat"
 " pakket verwijderd is."
 
@@ -164,7 +162,7 @@ msgstr "Periodiek bijwerken"
 
 #. settings-schema.json->adjustmentMethod->description
 msgid "Adjustment Method"
-msgstr "Aanpasmethode"
+msgstr "Instelmethode"
 
 #. settings-schema.json->adjustmentMethod->options
 msgid "needload"
@@ -180,8 +178,7 @@ msgstr "vidmode"
 
 #. settings-schema.json->adjustmentMethod->tooltip
 msgid "Method to use to set color temperature"
-msgstr ""
-"De methode die dient te worden gebruikt om de kleurtemperatuur in te stellen"
+msgstr "De methode die dient te worden gebruikt om de kleurtemperatuur in te stellen"
 
 #. settings-schema.json->labelScrollAction->description
 msgid "Icon Scroll Action"
@@ -231,8 +228,7 @@ msgstr "Gamma"
 
 #. settings-schema.json->labelScrollAction->tooltip
 msgid "Action when scroll on applet icon."
-msgstr ""
-"De actie die dient te worden uitgevoerd na het scrollen op het pictogram van"
+msgstr "De actie die dient te worden uitgevoerd na het scrollen op het pictogram van"
 " het werkbalhulpje."
 
 #. settings-schema.json->dayTemp->units
@@ -247,7 +243,7 @@ msgstr "%"
 
 #. settings-schema.json->locationRemote->description
 msgid "Remote Location"
-msgstr "Externe locatie"
+msgstr "Externe locatie gebruiken"
 
 #. settings-schema.json->locationRemote->tooltip
 #. settings-schema.json->locationUpdate->tooltip
@@ -267,24 +263,19 @@ msgid "Longitude"
 msgstr "Lengtegraad"
 
 #. settings-schema.json->aboutLocation->description
-msgid ""
-"Native geoclue on redshift can make the experience slow.\n"
+msgid "Native geoclue on redshift can make the experience slow.\n"
 "Using: https://geolocation-db.com/"
-msgstr ""
-"Let op: Geoclue kan Redshift vertragen.\n"
+msgstr "Let op: Geoclue kan Redshift vertragen.\n"
 "In gebruik zijnde dienst: https://geolocation-db.com/"
 
 #. settings-schema.json->textTips->description
 msgid "* Right-click the sliders to reset the default (neutral) value."
-msgstr ""
-"* Klik met de rechtermuisknop op een schuifknop om de standaardwaarde"
+msgstr "* Klik met de rechtermuisknop op een schuifknop om de standaardwaarde"
 " (neutraal) ervan te herstellen."
 
 #. settings-schema.json->textInfo->description
-msgid ""
-"If you like and use this applet take the time to visit it's page on Cinnamon"
+msgid "If you like and use this applet take the time to visit it's page on Cinnamon"
 " Spices and give it a star. You only need a github account to do this."
-msgstr ""
-"Als u dit werkbalkhulpje graag gebruikt, dan zou ik het zeer op prijs stellen"
+msgstr "Als u dit werkbalkhulpje graag gebruikt, dan zou ik het zeer op prijs stellen"
 " als u de pagina op Cinnamon Spices wilt openen en een ster wilt uitdelen. U"
 " heeft hiervoor alléén een GitHub-account nodig."
