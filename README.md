@@ -73,6 +73,24 @@ If you want to submit some translations please make it on the original repositor
     - Fixed icon scale.
     - Added support to version 4.3 and 4.4
 
+## Translations
+| Language              | Translator                                                                                                                                                                                                          |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Bulgarian             | <a href="https://github.com/spacy01" target="_blank"><img src="https://github.com/spacy01.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> spacy01</a>                      |
+| Danish                | <a href="https://github.com/Alan01" target="_blank"><img src="https://github.com/Alan01.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> Alan01</a>                         |
+| Dutch                 | <a href="https://github.com/Vistaus" target="_blank"><img src="https://github.com/Vistaus.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> Vistaus</a>                      |
+| French                | <a href="https://github.com/claudiux" target="_blank"><img src="https://github.com/claudiux.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> claudiux</a>                   |
+| German                | <a href="https://github.com/OzzieIsaacs" target="_blank"><img src="https://github.com/OzzieIsaacs.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> OzzieIsaacs</a>          |
+| Italian               | <a href="https://github.com/eperulli" target="_blank"><img src="https://github.com/eperulli.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> eperulli</a>                   |
+| Polish                | <a href="https://github.com/szedar14" target="_blank"><img src="https://github.com/szedar14.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> szedar14</a>                   |
+| Portuguese (Brazil)   | <a href="https://github.com/raphaelquintao" target="_blank"><img src="https://github.com/raphaelquintao.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> raphaelquintao</a> |
+| Portuguese (Portugal) | <a href="https://github.com/hugok79" target="_blank"><img src="https://github.com/hugok79.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> hugok79</a>                      |
+| Romanian              | <a href="https://github.com/AndreiMiculita" target="_blank"><img src="https://github.com/AndreiMiculita.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> AndreiMiculita</a> |
+| Spanish (Mexico)      | <a href="https://github.com/RichLuna" target="_blank"><img src="https://github.com/RichLuna.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> RichLuna</a>                   |
+| Spanish (Spain)       | <a href="https://github.com/haggen88" target="_blank"><img src="https://github.com/haggen88.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> haggen88</a>                   |
+| Swedish               | <a href="https://github.com/eson57" target="_blank"><img src="https://github.com/eson57.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> eson57</a>                         |
+| Turkish               | <a href="https://github.com/kelebek333" target="_blank"><img src="https://github.com/kelebek333.png" width="15px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;"> kelebek333</a>             |
+
 ## Screenshots
 <span style="display:block; text-align:center">
 
@@ -85,21 +103,3 @@ If you want to submit some translations please make it on the original repositor
 ![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot3.png)
 
 </span>
-
-## Translations
-| Language              | Translator                                                                                                                                                                                                         |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Bulgarian             | <a href="https://github.com/spacy01" target="_blank"><img src="https://github.com/spacy01.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">spacy01</a>                      |
-| Danish                | <a href="https://github.com/Alan01" target="_blank"><img src="https://github.com/Alan01.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">Alan01</a>                         |
-| Dutch                 | <a href="https://github.com/Vistaus" target="_blank"><img src="https://github.com/Vistaus.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">Vistaus</a>                      |
-| French                | <a href="https://github.com/claudiux" target="_blank"><img src="https://github.com/claudiux.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">claudiux</a>                   |
-| German                | <a href="https://github.com/OzzieIsaacs" target="_blank"><img src="https://github.com/OzzieIsaacs.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">OzzieIsaacs</a>          |
-| Italian               | <a href="https://github.com/eperulli" target="_blank"><img src="https://github.com/eperulli.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">eperulli</a>                   |
-| Polish                | <a href="https://github.com/szedar14" target="_blank"><img src="https://github.com/szedar14.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">szedar14</a>                   |
-| Portuguese (Brazil)   | <a href="https://github.com/raphaelquintao" target="_blank"><img src="https://github.com/raphaelquintao.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">raphaelquintao</a> |
-| Portuguese (Portugal) | <a href="https://github.com/hugok79" target="_blank"><img src="https://github.com/hugok79.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">hugok79</a>                      |
-| Romanian              | <a href="https://github.com/AndreiMiculita" target="_blank"><img src="https://github.com/AndreiMiculita.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">AndreiMiculita</a> |
-| Spanish (Mexico)      | <a href="https://github.com/RichLuna" target="_blank"><img src="https://github.com/RichLuna.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">RichLuna</a>                   |
-| Spanish (Spain)       | <a href="https://github.com/haggen88" target="_blank"><img src="https://github.com/haggen88.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">haggen88</a>                   |
-| Swedish               | <a href="https://github.com/eson57" target="_blank"><img src="https://github.com/eson57.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">eson57</a>                         |
-| Turkish               | <a href="https://github.com/kelebek333" target="_blank"><img src="https://github.com/kelebek333.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">kelebek333</a>             |
