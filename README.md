@@ -39,21 +39,12 @@ If you want to submit some translations please make it on the original repositor
     - Fix sliders on Cinnamon 5.4
     - Automatically check for redshift-gtk and notify to remove it.
     - Smooth transition between day and night.
-    - Added translations:
-        - Dutch by [Vistaus](https://github.com/Vistaus "@Vistaus on Github")
-        - Italian by [eperulli](https://github.com/eperulli "@eperulli on Github")
-        - Portuguese (Portugal) by [hugok79](https://github.com/hugok79 "@hugok79 on Github")
-        - Spanish (Spain) by [haggen88](https://github.com/haggen88 "@haggen88 on Github")
 * 1.7.1
     - Auto update is only used when night is enabled.
-    - Added translations:
-      - Polish by [szedar14](https://github.com/szedar14 "@szedar14 on Github")
 * 1.7.0
     - Fixed issues with asynchronous command calls.
         - Main redshift call reverted to synchronous, so the cinnamon will show the annoying message again: ***This applet contains function calls that could potentially cause Cinnamon to crash or freeze***.
         - I noticed that on some (slow?) computers many asynchronous calls cause the application to freeze.
-    - Added translations:
-        - Spanish (Mexico) by [RichLuna](https://github.com/RichLuna "@RichLuna on Github")
 * 1.6.0
     - Added manual night time option.
     - Fixed some issues with Debian.
@@ -65,9 +56,6 @@ If you want to submit some translations please make it on the original repositor
     - Fixed some issues with Debian.
         - Automatically disable redshift default service.
     - Removed default keyboard shortcuts.
-    - Added translations:
-        - Hungarian by [KAMI911](https://github.com/KAMI911 "@KAMI911 on Github")
-        - Danish by [Alan01](https://github.com/Alan01 "@Alan01 on Github")
 * 1.5.2
     - Added keyboard shortcut to increase brightness `<Control>Page_Up`
     - Added keyboard shortcut to decrease brightness `<Control>Page_Down`
@@ -78,23 +66,27 @@ If you want to submit some translations please make it on the original repositor
 * 1.5.1
     - Update night brightness on scrolling.
     - Added support to version 4.6.
-    - Added translations:
-        - Bulgarian by [@spacy01](https://github.com/spacy01 "@spacy01 on Github")
-        - German by [@OzzieIsaacs](https://github.com/OzzieIsaacs "@OzzieIsaacs on Github")
-        - Romanian by [@AndreiMiculita](https://github.com/AndreiMiculita "@AndreiMiculita on Github")
 * 1.5
     - Added keyboard shortcut to toggle On/Off `<Control>End`
     - Added localization support.
-        - Turkish by [@kelebek333](https://github.com/kelebek333 "@kelebek333 on Github")
-        - French by [@claudiux](https://github.com/claudiux "@claudiux on Github")
-        - Swedish by [@eson57](https://github.com/eson57 "@eson57 on Github")
-        - Portuguese (Brazil) by [@raphaelquintao](https://github.com/raphaelquintao "@raphaelquintao on Github")
 * 1.4
     - Fixed icon scale.
     - Added support to version 4.3 and 4.4
-    
-## Translations 
 
+## Screenshots
+<span style="display:block; text-align:center">
+
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshot.png)
+
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot1.png)
+
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot2.png)
+
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot3.png)
+
+</span>
+
+## Translations
 | Language              | Translator                                                                                                                                                                                                         |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Bulgarian             | <a href="https://github.com/spacy01" target="_blank"><img src="https://github.com/spacy01.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">spacy01</a>                      |
@@ -111,18 +103,3 @@ If you want to submit some translations please make it on the original repositor
 | Spanish (Spain)       | <a href="https://github.com/haggen88" target="_blank"><img src="https://github.com/haggen88.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">haggen88</a>                   |
 | Swedish               | <a href="https://github.com/eson57" target="_blank"><img src="https://github.com/eson57.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">eson57</a>                         |
 | Turkish               | <a href="https://github.com/kelebek333" target="_blank"><img src="https://github.com/kelebek333.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">kelebek333</a>             |
-
-
-
-## Screenshots
-<span style="display:block; text-align:center">
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshot.png)
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot1.png)
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot2.png)
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot3.png)
-
-</span>
