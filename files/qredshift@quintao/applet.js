@@ -316,7 +316,10 @@ class QRedshift extends Applet.TextIconApplet {
     }
     
     /**
-     * @return {{period: 'day'|'night'|'transition_to_day'|'transition_to_night', is_night: boolean, percent: number}}
+     * @typedef {{period: ('day'|'night'|'transition_to_day'|'transition_to_night'), is_night: boolean, percent: number}} check_period_return
+     */
+    /**
+     * @return {check_period_return}
      */
     check_period() {
         let date = new Date();
@@ -684,7 +687,7 @@ class QRedshift extends Applet.TextIconApplet {
         });
         this.nc_Slider.connect('value-changed', this.nightColorChange.bind(this));
         this.nc_Slider.connect('right-click', (actor, value) => {
-            actor._setValueEmit('3500');
+            actor._setValueEmit('6500');
         });
         this.menu.addMenuItem(this.nc_Slider);
         
@@ -832,39 +835,43 @@ class QRedshift extends Applet.TextIconApplet {
     }
     
     
-    doCommand(command) {
-        // qLOG('QRedshift CMD',  command);
-        if (!this.running) {
-            this.running = true;
-            Util.spawn_async(GLib.shell_parse_argv(command)[1], (out) => {
-                let period = out.match(/Period:.+/g);
-                if (period && period[0]) {
-                    this.opt.period = period[0].split(':')[1].trim();
-                }
-                // qLOG('QRedshift Command', command);
-                // qLOG('QRedshift Period', this.opt.period);
-                // this.setIcon();
-                this.updateTooltip();
-                this.setInfo();
-                this.running = false;
-            });
-        }
-        this.setIcon();
-    }
-    
-    doCommandSync(command) {
+    // doCommand(command) {
+    //     // qLOG('QRedshift CMD',  command);
+    //     if (!this.running) {
+    //         this.running = true;
+    //         Util.spawn_async(GLib.shell_parse_argv(command)[1], (out) => {
+    //             let period = out.match(/Period:.+/g);
+    //             if (period && period[0]) {
+    //                 this.opt.period = period[0].split(':')[1].trim();
+    //             }
+    //             // qLOG('QRedshift Command', command);
+    //             // qLOG('QRedshift Period', this.opt.period);
+    //             // this.setIcon();
+    //             this.updateTooltip();
+    //             this.setInfo();
+    //             this.running = false;
+    //         });
+    //     }
+    //     this.setIcon();
+    // }
+    /**
+     *
+     * @param {string} command
+     * @param {check_period_return | null} prd
+     */
+    doCommandSync(command, prd) {
         // qLOG('QRedshift CMD',  command);
         
         let [success, out] = GLib.spawn_command_line_sync(command);
         if (!success || out == null) return;
         let resp = QUtils.byte_array_to_string(out);
-
+        
         let period = resp.match(/Period:.+/g);
         if (period && period[0]) {
             this.opt.period = period[0].split(':')[1].trim();
         }
-        this.updateTooltip();
-        this.setInfo();
+        this.updateTooltip(prd);
+        this.setInfo(prd);
         this.setIcon();
     }
     
@@ -884,9 +891,10 @@ class QRedshift extends Applet.TextIconApplet {
             }
             
             let temp;
+            let prd = null;
             if (this.opt.enabledNight) {
                 if (this.opt.manualNightTime) {
-                    let prd = this.check_period();
+                    prd = this.check_period();
                     if (prd.is_night) {
                         temp = lerp(this.opt.nightTemp, this.opt.dayTemp, prd.percent);
                         cmd += `-t ${temp}:${temp} `;
@@ -913,25 +921,27 @@ class QRedshift extends Applet.TextIconApplet {
             if (this.opt.gammaMix) cmd += `-g ${this.opt.gammaMix} `;
             
             this.set_applet_icon_symbolic_path(this.metadata.path + ICON_ON);
-            this.doCommandSync(cmd);
+            this.doCommandSync(cmd, prd);
             
         } else {
             Util.spawnCommandLine(`redshift -x`);
             this.set_applet_icon_symbolic_path(this.metadata.path + ICON_OFF);
             this.opt.period = '-';
             
-            this.updateTooltip();
-            this.setInfo();
+            this.updateTooltip(null);
+            this.setInfo(null);
             this.setIcon();
         }
         
     }
     
-    setInfo() {
+    /**
+     * @param {check_period_return | null} prd
+     */
+    setInfo(prd) {
         let period = this.opt.period + "";
         
-        if (this.opt.enabled && this.opt.enabledNight && this.opt.manualNightTime) {
-            let prd = this.check_period();
+        if (this.opt.enabled && this.opt.enabledNight && this.opt.manualNightTime && prd !== null) {
             if (prd.period == 'transition_to_day') period = _("Transition to day");
             else if (prd.period == 'transition_to_night') period = _("Transition to night");
             else if (prd.period == 'night') period = _("Night");
@@ -945,7 +955,10 @@ class QRedshift extends Applet.TextIconApplet {
         else this.headerIcon.setStatus("-");
     }
     
-    updateTooltip() {
+    /**
+     * @param {check_period_return | null} prd
+     */
+    updateTooltip(prd) {
         let tooltiptext = `${this.metadata.name}: ${this.opt.enabled ? _("On") : _("Off")}`;
         // let labeltext = `${this.metadata.name}`;
         let labeltext = _("Off");
@@ -953,8 +966,7 @@ class QRedshift extends Applet.TextIconApplet {
         if (this.opt.enabled) {
             tooltiptext += '\n';
             let period = this.opt.period;
-            if (this.opt.manualNightTime) {
-                let prd = this.check_period();
+            if (this.opt.manualNightTime && prd != null) {
                 if (prd.period == 'transition_to_day') period = _("Transition to day");
                 else if (prd.period == 'transition_to_night') period = _("Transition to night");
                 else if (prd.period == 'night') period = _("Night");
