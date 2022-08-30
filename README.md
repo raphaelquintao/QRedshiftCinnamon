@@ -35,6 +35,15 @@ If you want to submit some translations please make it on the original repositor
     - If you want to enable it again, run `systemctl unmask --user redshift.service`
 
 ## Changelog
+* 1.7.2
+    - Fix sliders on Cinnamon 5.4
+    - Automatically check for redshift-gtk and notify to remove it.
+    - Smooth transition between day and night.
+    - Added translations:
+        - Dutch by [Vistaus](https://github.com/Vistaus "@Vistaus on Github")
+        - Italian by [eperulli](https://github.com/eperulli "@eperulli on Github")
+        - Portuguese (Portugal) by [hugok79](https://github.com/hugok79 "@hugok79 on Github")
+        - Spanish (Spain) by [haggen88](https://github.com/haggen88 "@haggen88 on Github")
 * 1.7.1
     - Auto update is only used when night is enabled.
     - Added translations:
@@ -44,9 +53,9 @@ If you want to submit some translations please make it on the original repositor
         - Main redshift call reverted to synchronous, so the cinnamon will show the annoying message again: ***This applet contains function calls that could potentially cause Cinnamon to crash or freeze***.
         - I noticed that on some (slow?) computers many asynchronous calls cause the application to freeze.
     - Added translations:
-        - Spanish by [RichLuna](https://github.com/RichLuna "@RichLuna on Github")
+        - Spanish (Mexico) by [RichLuna](https://github.com/RichLuna "@RichLuna on Github")
 * 1.6.0
-    - Added manual night-time option.
+    - Added manual night time option.
     - Fixed some issues with Debian.
 * 1.5.5
     - Fixed icon blinking when using symbolic icon.
@@ -79,11 +88,31 @@ If you want to submit some translations please make it on the original repositor
         - Turkish by [@kelebek333](https://github.com/kelebek333 "@kelebek333 on Github")
         - French by [@claudiux](https://github.com/claudiux "@claudiux on Github")
         - Swedish by [@eson57](https://github.com/eson57 "@eson57 on Github")
-        - Portuguese by [@raphaelquintao](https://github.com/raphaelquintao "@raphaelquintao on Github")
+        - Portuguese (Brazil) by [@raphaelquintao](https://github.com/raphaelquintao "@raphaelquintao on Github")
 * 1.4
     - Fixed icon scale.
     - Added support to version 4.3 and 4.4
     
+## Translations 
+
+| Language              | Translator                                                                                                                                                                                                         |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Bulgarian             | <a href="https://github.com/spacy01" target="_blank"><img src="https://github.com/spacy01.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">spacy01</a>                      |
+| Danish                | <a href="https://github.com/Alan01" target="_blank"><img src="https://github.com/Alan01.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">Alan01</a>                         |
+| Dutch                 | <a href="https://github.com/Vistaus" target="_blank"><img src="https://github.com/Vistaus.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">Vistaus</a>                      |
+| French                | <a href="https://github.com/claudiux" target="_blank"><img src="https://github.com/claudiux.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">claudiux</a>                   |
+| German                | <a href="https://github.com/OzzieIsaacs" target="_blank"><img src="https://github.com/OzzieIsaacs.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">OzzieIsaacs</a>          |
+| Italian               | <a href="https://github.com/eperulli" target="_blank"><img src="https://github.com/eperulli.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">eperulli</a>                   |
+| Polish                | <a href="https://github.com/szedar14" target="_blank"><img src="https://github.com/szedar14.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">szedar14</a>                   |
+| Portuguese (Brazil)   | <a href="https://github.com/raphaelquintao" target="_blank"><img src="https://github.com/raphaelquintao.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">raphaelquintao</a> |
+| Portuguese (Portugal) | <a href="https://github.com/hugok79" target="_blank"><img src="https://github.com/hugok79.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">hugok79</a>                      |
+| Romanian              | <a href="https://github.com/AndreiMiculita" target="_blank"><img src="https://github.com/AndreiMiculita.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">AndreiMiculita</a> |
+| Spanish (Mexico)      | <a href="https://github.com/RichLuna" target="_blank"><img src="https://github.com/RichLuna.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">RichLuna</a>                   |
+| Spanish (Spain)       | <a href="https://github.com/haggen88" target="_blank"><img src="https://github.com/haggen88.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">haggen88</a>                   |
+| Swedish               | <a href="https://github.com/eson57" target="_blank"><img src="https://github.com/eson57.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">eson57</a>                         |
+| Turkish               | <a href="https://github.com/kelebek333" target="_blank"><img src="https://github.com/kelebek333.png" width="25px" style="border-radius: 50%; margin-right:5px; vertical-align: middle;">kelebek333</a>             |
+
+
 
 ## Screenshots
 <span style="display:block; text-align:center">
@@ -97,5 +126,3 @@ If you want to submit some translations please make it on the original repositor
 ![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot3.png)
 
 </span>
-
-
