@@ -1,6 +1,6 @@
 QRedshift
 ===
-A Cinnamon applet that sets brightness, gamma levels and color temperature with Redshift.
+A Cinnamon applet that makes the color of your computer's display adapt to the time of day, warm at night and like sunlight during the day.
 
 Original Repository: [https://github.com/raphaelquintao/QRedshift](https://github.com/raphaelquintao/QRedshift)
 
@@ -17,6 +17,7 @@ If you want to submit some translations please make it on the original repositor
 * Keyboard Shortcuts.
 * Temperature from 1000k to 9000k.
 * Gamma from 0.5 to 5.
+* Smooth transition between day and night.
 * Custom location option.
 * Ready to Redshift 1.12
 
