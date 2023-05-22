@@ -36,6 +36,8 @@ If you want to submit some translations please make it on the original repositor
     - If you want to enable it again, run `systemctl unmask --user redshift.service`
 
 ## Changelog
+* 1.7.4
+    - Added new translations.
 * 1.7.3
     - Fixed small bug on smooth transition.
     - Fixed messages when not using manual night time.
@@ -81,18 +83,22 @@ If you want to submit some translations please make it on the original repositor
 | Language              | Translator                                                                                                        |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------|
 | Bulgarian             | <a href="https://github.com/spacy01" target="_blank" title="@spacy01 on Github">@spacy01</a>                      |
+| Chinese               | <a href="https://github.com/Slinet6056" target="_blank" title="@Slinet6056 on Github">@Slinet6056</a>             |
 | Danish                | <a href="https://github.com/Alan01" target="_blank" title="@Alan01 on Github">@Alan01</a>                         |
 | Dutch                 | <a href="https://github.com/Vistaus" target="_blank" title="@Vistaus on Github">@Vistaus</a>                      |
 | French                | <a href="https://github.com/claudiux" target="_blank" title="@claudiux on Github">@claudiux</a>                   |
 | German                | <a href="https://github.com/OzzieIsaacs" target="_blank" title="@OzzieIsaacs on Github">@OzzieIsaacs</a>          |
 | Hungarian             | <a href="https://github.com/kami911" target="_blank" title="@kami911 on Github">@kami911</a>                      |
 | Italian               | <a href="https://github.com/eperulli" target="_blank" title="@eperulli on Github">@eperulli</a>                   |
+| Occitan               | <a href="https://github.com/Mejans" target="_blank" title="@Mejans on Github">@Mejans</a>                         |
 | Polish                | <a href="https://github.com/szedar14" target="_blank" title="@szedar14 on Github">@szedar14</a>                   |
 | Portuguese (Brazil)   | <a href="https://github.com/raphaelquintao" target="_blank" title="@raphaelquintao on Github">@raphaelquintao</a> |
 | Portuguese (Portugal) | <a href="https://github.com/hugok79" target="_blank" title="@hugok79 on Github">@hugok79</a>                      |
 | Romanian              | <a href="https://github.com/AndreiMiculita" target="_blank" title="@AndreiMiculita on Github">@AndreiMiculita</a> |
+| Russian               | <a href="https://github.com/aivazoff" target="_blank" title="@aivazoff on Github">@aivazoff</a>                   |
 | Spanish (Mexico)      | <a href="https://github.com/RichLuna" target="_blank" title="@RichLuna on Github">@RichLuna</a>                   |
 | Spanish (Spain)       | <a href="https://github.com/haggen88" target="_blank" title="@haggen88 on Github">@haggen88</a>                   |
+| Slovak                | <a href="https://github.com/prescott66" target="_blank" title="@prescott66 on Github">@prescott66</a>             |
 | Swedish               | <a href="https://github.com/eson57" target="_blank" title="@eson57 on Github">@eson57</a>                         |
 | Turkish               | <a href="https://github.com/kelebek333" target="_blank" title="@kelebek333 on Github">@kelebek333</a>             |
 
