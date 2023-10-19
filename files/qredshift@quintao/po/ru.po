@@ -277,8 +277,9 @@ msgstr "Если вам нравится и вы пользуетесь этим
 
 #. settings-schema.json->textInfo->description
 msgid ""
-"When update to a new version make sure you reset the configs to default by deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
-" You will lost all your configs."
+"When updating to a new version make sure you reset the configs to default by "
+"deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
+"You will lose all your configs."
 msgstr ""
 "При обновлении до новой версии убедитесь, что вы сбросили настройки по умолчанию, удалив ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
 " Вы потеряете все свои настройки."

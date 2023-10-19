@@ -328,9 +328,9 @@ msgstr ""
 
 #. settings-schema.json->textHelp->description
 msgid ""
-"When update to a new version make sure you reset the configs to default by "
+"When updating to a new version make sure you reset the configs to default by "
 "deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
-"You will lost all your configs."
+"You will lose all your configs."
 msgstr ""
 "Ao atualizar para uma nova versão, certifique-se de redefinir as "
 "configurações para o padrão, excluindo o arquivo ~/.cinnamon/configs/"

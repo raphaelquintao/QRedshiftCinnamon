@@ -325,9 +325,9 @@ msgstr "* Højreklik skyderne for at nulstille til den neutrale standardværdi."
 
 #. settings-schema.json->textHelp->description
 msgid ""
-"When update to a new version make sure you reset the configs to default by "
+"When updating to a new version make sure you reset the configs to default by "
 "deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
-"You will lost all your configs."
+"You will lose all your configs."
 msgstr ""
 "Når du opdaterer til en ny version, skal du sørge for at nulstille "
 "konfigurationen til standardkonfigurationen ved at slette ~/.cinnamon/"
