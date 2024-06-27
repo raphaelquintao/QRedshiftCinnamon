@@ -1,8 +1,8 @@
-QRedshift
+QRedshift Cinnamon
 ===
 A Cinnamon applet that makes the color of your computer's display adapt to the time of day, warm at night and like sunlight during the day.
 
-Original Repository: [https://github.com/raphaelquintao/QRedshift](https://github.com/raphaelquintao/QRedshift)
+Original Repository: [https://github.com/raphaelquintao/QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon)
 
 ## Translations
 
@@ -21,28 +21,32 @@ If you want to submit some translations please make it on the original repositor
 * Temperature from 1000k to 9000k.
 * Gamma from 0.5 to 5.
 * Smooth transition between day and night.
-* Custom location option.
-* Ready to Redshift 1.12
+* Independent of redshift package.
 
-## Installation
+## Manual Installation
 
-1. Install Redshift:
-    - Debian/Ubuntu/Linux Mint: `sudo apt-get install redshift`
-    - Red Hat/Cent OS/Fedora: `sudo dnf install redshift`
-    - Arch/Manjaro: `yay -S redshift-minimal`
+1. Remove old Redshift:
+    - Debian/Ubuntu/Linux Mint: `sudo apt-get remove redshift redshift-gtk`
+    - Red Hat/Cent OS/Fedora: `sudo dnf remove redshift`
+    - Arch/Manjaro: `yay -R redshift redshift-minimal`
 2. Download zip from [this link](https://cinnamon-spices.linuxmint.com/files/applets/qredshift@quintao.zip) and extract .zip archive to `~/.local/share/cinnamon/applets`
     - Or automatically download it from Cinnamon Applets download tab.
 3. Enable the applet in Cinnamon settings
-4. Make sure you remove redshift-gtk `sudo apt-get remove redshift-gtk`
-5. `~/.config/redshift.conf` may conflict with this applet, it is highly recommended removing it.
-    - Applet will show a warning to remove it.
-6. Make sure you disable redshift service `systemctl mask --user redshift.service`
-    - Applet will automatically attempt to disable the default redshift service.
-    - If you want to enable it again, run `systemctl unmask --user redshift.service`
 
 ## Changelog
+
+* 2.0.0
+    * Original repository renamed to [QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon).
+    * Completely disabled on Wayland (wayland cinnamon compositor don't support gamma ramps yet).
+    * Removed remote location option (I don't think anyone uses it. Can be implemented in the future if got enough requests).
+    * Removed dependency of redshift package.
+    * Extension now uses its own backend application: [QRedshift Terminal Application](https://github.com/raphaelquintao/QRedshift).
+
+<details closed>
+<summary>More</summary>
+
 * 1.7.7
-    - Added smooth transition to brightness. 
+    - Added smooth transition to brightness.
 * 1.7.6
     - Added option to activate as soon as Cinnamon starts up.
 * 1.7.5
@@ -91,40 +95,42 @@ If you want to submit some translations please make it on the original repositor
     - Fixed icon scale.
     - Added support to version 4.3 and 4.4
 
+</details>
+
 ## Translations
 
-| Language              | Code    | Translator                                                                                                        |
-|-----------------------|---------|-------------------------------------------------------------------------------------------------------------------|
-| Bulgarian             | `bg`    | <a href="https://github.com/spacy01" target="_blank" title="@spacy01 on Github">@spacy01</a>                      |
-| Danish                | `da`    | <a href="https://github.com/Alan01" target="_blank" title="@Alan01 on Github">@Alan01</a>                         |
-| German                | `de`    | <a href="https://github.com/OzzieIsaacs" target="_blank" title="@OzzieIsaacs on Github">@OzzieIsaacs</a>          |
-| Spanish (Spain)       | `es`    | <a href="https://github.com/haggen88" target="_blank" title="@haggen88 on Github">@haggen88</a>                   |
-| Spanish (Mexico)      | `es_MX` | <a href="https://github.com/RichLuna" target="_blank" title="@RichLuna on Github">@RichLuna</a>                   |
-| French                | `fr`    | <a href="https://github.com/claudiux" target="_blank" title="@claudiux on Github">@claudiux</a>                   |
-| Hungarian             | `hu`    | <a href="https://github.com/kami911" target="_blank" title="@kami911 on Github">@kami911</a>                      |
-| Italian               | `it`    | <a href="https://github.com/eperulli" target="_blank" title="@eperulli on Github">@eperulli</a>                   |
-| Dutch                 | `nl`    | <a href="https://github.com/Vistaus" target="_blank" title="@Vistaus on Github">@Vistaus</a>                      |
-| Occitan               | `oc`    | <a href="https://github.com/Mejans" target="_blank" title="@Mejans on Github">@Mejans</a>                         |
-| Polish                | `pl`    | <a href="https://github.com/szedar14" target="_blank" title="@szedar14 on Github">@szedar14</a>                   |
-| Portuguese (Portugal) | `pt`    | <a href="https://github.com/hugok79" target="_blank" title="@hugok79 on Github">@hugok79</a>                      |
-| Portuguese (Brazil)   | `pt_BR` | <a href="https://github.com/raphaelquintao" target="_blank" title="@raphaelquintao on Github">@raphaelquintao</a> |
-| Romanian              | `ro`    | <a href="https://github.com/AndreiMiculita" target="_blank" title="@AndreiMiculita on Github">@AndreiMiculita</a> |
-| Russian               | `ru`    | <a href="https://github.com/aivazoff" target="_blank" title="@aivazoff on Github">@aivazoff</a>                   |
-| Slovak                | `sk`    | <a href="https://github.com/prescott66" target="_blank" title="@prescott66 on Github">@prescott66</a>             |
-| Swedish               | `sv`    | <a href="https://github.com/eson57" target="_blank" title="@eson57 on Github">@eson57</a>                         |
-| Turkish               | `tr`    | <a href="https://github.com/kelebek333" target="_blank" title="@kelebek333 on Github">@kelebek333</a>             |
-| Chinese               | `zh_CN` | <a href="https://github.com/Slinet6056" target="_blank" title="@Slinet6056 on Github">@Slinet6056</a>             |
+|                                                             Flag                                                             | Language              | Code    | Translator                                                                                                        |
+|:----------------------------------------------------------------------------------------------------------------------------:|-----------------------|---------|-------------------------------------------------------------------------------------------------------------------|
+|             <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Bulgaria.svg" height="16px"/>              | Bulgarian             | `bg`    | <a href="https://github.com/spacy01" target="_blank" title="@spacy01 on Github">@spacy01</a>                      |
+|              <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg" height="16px"/>              | Danish                | `da`    | <a href="https://github.com/Alan01" target="_blank" title="@Alan01 on Github">@Alan01</a>                         |
+|                <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" height="16px"/>                 | German                | `de`    | <a href="https://github.com/OzzieIsaacs" target="_blank" title="@OzzieIsaacs on Github">@OzzieIsaacs</a>          |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" height="16px"/>                  | Spanish (Spain)       | `es`    | <a href="https://github.com/haggen88" target="_blank" title="@haggen88 on Github">@haggen88</a>                   |
+|              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg" height="16px"/>               | Spanish (Mexico)      | `es_MX` | <a href="https://github.com/RichLuna" target="_blank" title="@RichLuna on Github">@RichLuna</a>                   |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" height="16px"/>                 | French                | `fr`    | <a href="https://github.com/claudiux" target="_blank" title="@claudiux on Github">@claudiux</a>                   |
+|              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg" height="16px"/>              | Hungarian             | `hu`    | <a href="https://github.com/kami911" target="_blank" title="@kami911 on Github">@kami911</a>                      |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg" height="16px"/>                  | Italian               | `it`    | <a href="https://github.com/eperulli" target="_blank" title="@eperulli on Github">@eperulli</a>                   |
+|          <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" height="16px"/>          | Dutch                 | `nl`    | <a href="https://github.com/Vistaus" target="_blank" title="@Vistaus on Github">@Vistaus</a>                      |
+|             <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Occitania.svg" height="16px"/>             | Occitan               | `oc`    | <a href="https://github.com/Mejans" target="_blank" title="@Mejans on Github">@Mejans</a>                         |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg" height="16px"/>                 | Polish                | `pl`    | <a href="https://github.com/szedar14" target="_blank" title="@szedar14 on Github">@szedar14</a>                   |
+|             <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" height="16px"/>              | Portuguese (Portugal) | `pt`    | <a href="https://github.com/hugok79" target="_blank" title="@hugok79 on Github">@hugok79</a>                      |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg" height="16px"/>                 | Portuguese (Brazil)   | `pt_BR` | <a href="https://github.com/raphaelquintao" target="_blank" title="@raphaelquintao on Github">@raphaelquintao</a> |
+|              <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Romania.svg" height="16px"/>              | Romanian              | `ro`    | <a href="https://github.com/AndreiMiculita" target="_blank" title="@AndreiMiculita on Github">@AndreiMiculita</a> |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" height="16px"/>                 | Russian               | `ru`    | <a href="https://github.com/aivazoff" target="_blank" title="@aivazoff on Github">@aivazoff</a>                   |
+|             <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Flag_of_Slovakia.svg" height="16px"/>              | Slovak                | `sk`    | <a href="https://github.com/prescott66" target="_blank" title="@prescott66 on Github">@prescott66</a>             |
+|                 <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg" height="16px"/>                 | Swedish               | `sv`    | <a href="https://github.com/eson57" target="_blank" title="@eson57 on Github">@eson57</a>                         |
+|              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" height="16px"/>               | Turkish               | `tr`    | <a href="https://github.com/kelebek333" target="_blank" title="@kelebek333 on Github">@kelebek333</a>             |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg" height="16px"/>  | Chinese               | `zh_CN` | <a href="https://github.com/Slinet6056" target="_blank" title="@Slinet6056 on Github">@Slinet6056</a>             |
 
 ## Screenshots
 
 <span style="display:block; text-align:center">
 
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshot.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshot.png)
 
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot1.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot1.png)
 
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot2.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot2.png)
 
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshift/master/screenshots/screenshot3.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot3.png)
 
 </span>
