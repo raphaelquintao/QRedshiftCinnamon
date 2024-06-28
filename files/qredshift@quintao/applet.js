@@ -930,9 +930,9 @@ class QRedshift extends Applet.TextIconApplet {
         //
         if (this.opt.enabled) {
             // qLOG('CMD', `${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
-            // QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
+            QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
         } else {
-            // this.restore();
+            this.restore();
         }
         
         
