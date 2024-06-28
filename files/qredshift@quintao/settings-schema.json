@@ -281,7 +281,7 @@
   
   "stepBright": {
     "type": "spinbutton",
-    "default": 1,
+    "default": 5,
     "min": 1,
     "max": 100,
     "step": 1,
@@ -290,7 +290,7 @@
   },
   "stepTemp": {
     "type": "spinbutton",
-    "default": 50,
+    "default": 100,
     "min": 1,
     "max": 1000,
     "step": 1,
