@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-27 02:18-0300\n"
+"POT-Creation-Date: 2024-06-28 02:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Bright:"
 msgstr ""
 
-#: applet.js:707 applet.js:1010
+#: applet.js:707 applet.js:1009
 msgid "Gamma:"
 msgstr ""
 
@@ -86,43 +86,43 @@ msgstr ""
 msgid "Show Label"
 msgstr ""
 
-#: applet.js:960 applet.js:986
+#: applet.js:959 applet.js:985
 msgid "Transition to day"
 msgstr ""
 
-#: applet.js:961 applet.js:987
+#: applet.js:960 applet.js:986
 msgid "Transition to night"
 msgstr ""
 
-#: applet.js:962 applet.js:988
+#: applet.js:961 applet.js:987
 msgid "Night"
 msgstr ""
 
-#: applet.js:963 applet.js:989
+#: applet.js:962 applet.js:988
 msgid "Day"
 msgstr ""
 
-#: applet.js:979
+#: applet.js:978
 msgid "On"
 msgstr ""
 
-#: applet.js:979 applet.js:980
+#: applet.js:978 applet.js:979
 msgid "Off"
 msgstr ""
 
-#: applet.js:1001
+#: applet.js:1000
 msgid "Day Temperature"
 msgstr ""
 
-#: applet.js:1002
+#: applet.js:1001
 msgid "Day Brightness"
 msgstr ""
 
-#: applet.js:1004
+#: applet.js:1003
 msgid "Night Temperature"
 msgstr ""
 
-#: applet.js:1005
+#: applet.js:1004
 msgid "Night Brightness"
 msgstr ""
 
@@ -130,14 +130,14 @@ msgstr ""
 #. settings-schema.json->dayTemp->description
 #. settings-schema.json->nightTemp->description
 #. settings-schema.json->stepTemp->description
-#: applet.js:1007
+#: applet.js:1006
 msgid "Temperature"
 msgstr ""
 
 #. settings-schema.json->dayBrightness->description
 #. settings-schema.json->nightBrightness->description
 #. settings-schema.json->stepBright->description
-#: applet.js:1008
+#: applet.js:1007
 msgid "Brightness"
 msgstr ""
 
@@ -308,7 +308,7 @@ msgstr ""
 
 #. settings-schema.json->textHelp->description
 msgid ""
-"When update to a new version make sure you reset the configs to default by deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
+"When updating to a new version make sure you reset the configs to default by deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\n"
 "You will lost all your configs."
 msgstr ""
 

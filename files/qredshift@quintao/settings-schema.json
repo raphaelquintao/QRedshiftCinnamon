@@ -313,7 +313,7 @@
   },
   "textHelp": {
     "type": "label",
-    "description": "When update to a new version make sure you reset the configs to default by deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\nYou will lost all your configs."
+    "description": "When updating to a new version make sure you reset the configs to default by deleting the ~/.cinnamon/configs/qredshift@quintao/qredshift@quintao.json.\nYou will lost all your configs."
   },
   "textInfo": {
     "type": "label",

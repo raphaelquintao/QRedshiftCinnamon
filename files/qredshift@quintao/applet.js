@@ -83,7 +83,7 @@ class QRedshift extends Applet.TextIconApplet {
     }
     
     set current_gamma(value) {
-        this._current_gamma = parseInt(value);
+        this._current_gamma = value;
     }
     
     constructor(metadata, orientation, panel_height, instance_id) {
@@ -562,16 +562,6 @@ class QRedshift extends Applet.TextIconApplet {
     
     
     on_shortcut_change() {
-        // Main.keybindingManager.addHotKey("must-be-unique-id", this.keybinding, Lang.bind(this, this.on_hotkey_triggered));
-        // qLOG("KEY Changed", this.opt.keyToggle + "", typeof this.opt.keyToggle);
-        // qLOG(this.opt.keyToggle + "");
-        // qLOG("onKeyChanged", value, data);
-        // qLOG("onKeyChanged");
-        // qLOG("keyBrightnessUp", this.opt.keyBrightnessUp);
-        // qLOG("keyBrightnessDown", this.opt.keyBrightnessDown);
-        // qLOG("keyTempUp", this.opt.keyTempUp);
-        // qLOG("keyTempDown", this.opt.keyTempDown);
-        // qLOG("keyGammaUp", this.opt.keyGammaUp);
         
         if (this.opt.keyBrightnessUp)
             Main.keybindingManager.addHotKey("keyBrightnessUp", this.opt.keyBrightnessUp, (event) => {
@@ -619,7 +609,7 @@ class QRedshift extends Applet.TextIconApplet {
     
     
     on_setting_change(value, data = {key: undefined}) {
-        qLOG("onSettChange", value, data);
+        // qLOG("onSettChange", value, data);
         
         this.enabledAuto.setToggleState(this.opt.autoUpdate);
         
@@ -780,7 +770,7 @@ class QRedshift extends Applet.TextIconApplet {
         this.enabledAuto.actor.add_style_class_name('q-icon');
         this.enabledAuto.connect('toggled', this.autoUpdateChange.bind(this));
         // this.bottomBar.addOnLeft(this.enabledAuto);
-        
+        //
         // show label
         this.enabledLabel = new QPopupSwitch({
             label: _("Show Label"),
@@ -854,8 +844,10 @@ class QRedshift extends Applet.TextIconApplet {
         qLOG('QRedshift', 'ADDED TO PANEL');
         if (this.wayland)
             this.opt.enabled = false;
-        else if (this.opt.enableAtStartup === true)
+        else if (this.opt.enableAtStartup === true){
             this.opt.enabled = true;
+            this.enabledDay.setToggleState(this.opt.enabled);
+        }
     }
     
     
@@ -928,11 +920,11 @@ class QRedshift extends Applet.TextIconApplet {
         
         // if (this.opt.gammaMix) cmd += `-g ${this.opt.gammaMix} `;
         
-        qLOG('PRD', `${JSON.stringify(prd, null, 2)}`);
-        qLOG('CMD', `Temp: ${this.current_temp}`, `Bright: ${this.current_brightness}`, `Gamma: ${this.current_gamma}`);
-        
+        // qLOG('PRD', `${JSON.stringify(prd, null, 2)}`);
+        // qLOG('CMD', `Temp: ${this.current_temp}`, `Bright: ${this.current_brightness}`, `Gamma: ${this.current_gamma}`);
+        //
         if (this.opt.enabled) {
-            qLOG('CMD', `${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
+            // qLOG('CMD', `${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
             QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
         } else {
             this.restore();
@@ -942,9 +934,6 @@ class QRedshift extends Applet.TextIconApplet {
         this.update_header_info(prd);
         this.update_tooltip_and_label(prd);
         this.set_icon();
-        
-        qLOG(">>>>HERE<<<<", "");
-        
         
     }
     

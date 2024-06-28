@@ -65,22 +65,25 @@ function byte_array_to_string(data) {
  */
 function spawn_command_line_sync_string_response(command) {
     try {
-        let [success, standard_output, standard_error, exit_status] = GLib.spawn_command_line_sync(command);
-
+        let [success, standard_output, standard_error, exit_status, wait_status] = GLib.spawn_command_line_sync(command);
+        GLib.child_watch_add(GLib.PRIORITY_DEFAULT, wait_status, function (pid, status) {
+            GLib.spawn_close_pid(pid);
+        });
+        
         return {
             success: success,
             stdout: byte_array_to_string(standard_output),
             stderr: byte_array_to_string(standard_error),
             exit_status: exit_status
         };
-
-    }catch (e) {
+        
+    } catch (e) {
         return {
             success: false,
             stdout: '',
             stderr: e,
             exit_status: 1
-        }
+        };
     }
 }
 
@@ -112,6 +115,10 @@ function spawn_command_line_async_promise(command, work_dir = null) {
             let spawn_flags = GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD;
             
             let [result, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(work_dir, argv, null, spawn_flags, null);
+            
+            GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, function (pid, status) {
+                GLib.spawn_close_pid(pid);
+            });
             
             let output = _parse(stdout);
             let output_err = _parse(stderr);
