@@ -245,8 +245,6 @@ class QRedshift extends Applet.TextIconApplet {
         this.maxColor = 9000;
         this.minColor = 1000;
         
-        this.colorStep = 50;
-        
         
         this.menuManager = new PopupMenu.PopupMenuManager(this);
         this.menu = new Applet.AppletPopupMenu(this, orientation);
@@ -322,7 +320,7 @@ class QRedshift extends Applet.TextIconApplet {
             // Mainloop.source_remove(this.timeout_info);
             
             // Disable Redshift for safety.
-            this.disable_redshift_service();
+            // this.disable_redshift_service();
             
             // Load Information
             // this.set_adjustment_methods(false);
@@ -508,7 +506,7 @@ class QRedshift extends Applet.TextIconApplet {
         if (this.wayland) return;
         
         QUtils.spawn_command_line_async_promise('redshift -V').then(value => {
-            qLOG('OLD REDSHIFT', value);
+            // qLOG('OLD REDSHIFT', value);
             
             if (this.redshift_info_menu_item == null) {
                 this.redshift_info_menu_item = new QPopupHeader({
@@ -522,8 +520,10 @@ class QRedshift extends Applet.TextIconApplet {
                 this.menu.addMenuItem(this.redshift_info_menu_item, 2);
             }
             
+            this.disable_redshift_service();
+            
         }).catch(reason => {
-            qLOG('OLD REDSHIFT ERROR', reason);
+            // qLOG('OLD REDSHIFT ERROR', reason);
             if (this.redshift_info_menu_item !== null) {
                 this.redshift_info_menu_item.destroy();
                 this.redshift_info_menu_item = null;
@@ -618,21 +618,26 @@ class QRedshift extends Applet.TextIconApplet {
         
         // Day Temp
         this.dc_Slider.setValue(this.opt.dayTemp);
+        this.dc_Slider.setStep(this.opt.stepTemp);
         
         // Day Bright
         this.db_Slider.setValue(this.opt.dayBrightness);
+        this.db_Slider.setStep(this.opt.stepBright);
         
         // Gamma mix
         this.gm_Slider.setValue(this.opt.gammaMix);
+        this.gm_Slider.setStep(this.opt.stepGamma);
         
         // Night Enabled
         this.enabledNight.setToggleState(this.opt.enabledNight);
         
         // Night Temp
         this.nc_Slider.setValue(this.opt.nightTemp);
+        this.nc_Slider.setStep(this.opt.stepTemp);
         
         // Night Bright
         this.nb_Slider.setValue(this.opt.nightBrightness);
+        this.nb_Slider.setStep(this.opt.stepBright);
         
         this.doUpdate();
     }
@@ -673,7 +678,7 @@ class QRedshift extends Applet.TextIconApplet {
             // day color
             this.dc_Slider = new QPopupSlider({
                 label: _("Temp:"), unit: 'K',
-                value: this.opt.dayTemp, min: this.minColor, max: this.maxColor, step: this.colorStep
+                value: this.opt.dayTemp, min: this.minColor, max: this.maxColor, step: this.opt.stepTemp
             });
             this.dc_Slider.connect('value-changed', this.dayColorChange.bind(this));
             this.dc_Slider.connect('right-click', (actor, value) => {
@@ -684,7 +689,7 @@ class QRedshift extends Applet.TextIconApplet {
             // day bright
             this.db_Slider = new QPopupSlider({
                 label: _("Bright:"), unit: '%',
-                value: this.opt.dayBrightness, min: this.minBrightness, max: 100, step: 1
+                value: this.opt.dayBrightness, min: this.minBrightness, max: 100, step: this.opt.stepBright
             });
             this.db_Slider.connect('value-changed', this.dayBrightChange.bind(this));
             this.db_Slider.connect('right-click', (actor, value) => {
@@ -695,7 +700,7 @@ class QRedshift extends Applet.TextIconApplet {
             // Gamma
             this.gm_Slider = new QPopupSlider({
                 label: _("Gamma:"), unit: '',
-                value: this.opt.gammaMix, min: 0.5, max: 5, step: 0.01
+                value: this.opt.gammaMix, min: 0.5, max: 5, step: this.opt.stepGamma
             });
             this.gm_Slider.connect('value-changed', this.gammaMixChange.bind(this));
             this.gm_Slider.connect('right-click', (actor, value) => {
@@ -718,7 +723,7 @@ class QRedshift extends Applet.TextIconApplet {
             // night color
             this.nc_Slider = new QPopupSlider({
                 label: _("Temp:"), unit: 'K',
-                value: this.opt.nightTemp, min: this.minColor, max: this.maxColor, step: this.colorStep
+                value: this.opt.nightTemp, min: this.minColor, max: this.maxColor, step: this.opt.stepTemp
             });
             this.nc_Slider.connect('value-changed', this.nightColorChange.bind(this));
             this.nc_Slider.connect('right-click', (actor, value) => {
@@ -729,7 +734,7 @@ class QRedshift extends Applet.TextIconApplet {
             // night bright
             this.nb_Slider = new QPopupSlider({
                 label: _("Bright:"), unit: '%',
-                value: this.opt.nightBrightness, min: this.minBrightness, max: 100, step: 1
+                value: this.opt.nightBrightness, min: this.minBrightness, max: 100, step: this.opt.stepBright
             });
             this.nb_Slider.connect('value-changed', this.nightBrightChange.bind(this));
             this.nb_Slider.connect('right-click', (actor, value) => {
@@ -910,7 +915,7 @@ class QRedshift extends Applet.TextIconApplet {
                 temp = lerp(this.opt.dayTemp, this.opt.nightTemp, prd.percent);
                 brigh = lerp(this.opt.dayBrightness, this.opt.nightBrightness, prd.percent);
             }
-            qLOG('Temp', temp, `Period: ${prd.period}, Percent: ${prd.percent}`);
+            // qLOG('Temp', temp, `Period: ${prd.period}, Percent: ${prd.percent}`);
             
         }
         
@@ -925,9 +930,9 @@ class QRedshift extends Applet.TextIconApplet {
         //
         if (this.opt.enabled) {
             // qLOG('CMD', `${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
-            QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
+            // QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
         } else {
-            this.restore();
+            // this.restore();
         }
         
         

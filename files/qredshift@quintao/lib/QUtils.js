@@ -560,6 +560,10 @@ class QPopupSlider extends QPopupItem {
         this.slider.queue_repaint();
     }
     
+    setStep(value) {
+        this.STEP = value;
+    }
+    
     _setValueEmit(value) {
         if (!Number.isInteger(this.STEP)) value = value.toFixed(2);
         
