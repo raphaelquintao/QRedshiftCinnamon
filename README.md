@@ -4,9 +4,11 @@ A Cinnamon applet that makes the color of your computer's display adapt to the t
 
 Original Repository: [https://github.com/raphaelquintao/QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon)
 
-## Translations
+## Installation
 
-If you want to submit some translations please make it on the original repository. It's a lot easier to me keep it synced.
+```shell
+curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -sSfL | bash 
+```
 
 ## Buy me a coffee
 
@@ -22,16 +24,6 @@ If you want to submit some translations please make it on the original repositor
 * Gamma from 0.5 to 5.
 * Smooth transition between day and night.
 * Independent of redshift package.
-
-## Manual Installation
-
-1. Remove old Redshift:
-    - Debian/Ubuntu/Linux Mint: `sudo apt-get remove redshift redshift-gtk`
-    - Red Hat/Cent OS/Fedora: `sudo dnf remove redshift`
-    - Arch/Manjaro: `yay -R redshift redshift-minimal`
-2. Download zip from [this link](https://cinnamon-spices.linuxmint.com/files/applets/qredshift@quintao.zip) and extract .zip archive to `~/.local/share/cinnamon/applets`
-    - Or automatically download it from Cinnamon Applets download tab.
-3. Enable the applet in Cinnamon settings
 
 ## Changelog
 
@@ -99,6 +91,9 @@ If you want to submit some translations please make it on the original repositor
 </details>
 
 ## Translations
+
+If you want to submit some translations please make it on the original repository. It's a lot easier to me keep it synced.
+
 
 |                                                             Flag                                                             | Language              | Code    | Translator                                                                                                        |
 |:----------------------------------------------------------------------------------------------------------------------------:|-----------------------|---------|-------------------------------------------------------------------------------------------------------------------|
