@@ -6,13 +6,16 @@ USER=$(logname)
 
 TARGET=~/.local/share/cinnamon/applets
 
-qecho "QRedshift Cinnamon Installtion Script! \n" "1"
+qecho "QRedshift Cinnamon Installation Script! \n" "1"
 
-METADATA=$(curl -s "https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/files/qredshift%40quintao/metadata.json" | sed -n -E 's/.+"version"\s*:\s*"(.+)".+/\1/p')
+LAST_VERSION=$(curl -s "https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/files/qredshift%40quintao/metadata.json" | sed -n -E 's/.+"version"\s*:\s*"(.+)".+/\1/p')
 
 ZIP='https://github.com/raphaelquintao/QRedshiftCinnamon/archive/refs/heads/master.tar.gz'
 
-mkdir -p $TARGET
+
+qecho "Last Version: " "1:33"; qecho "${LAST_VERSION}\n" "1;33";
+
+#mkdir -p $TARGET
 
 qecho " => " "1"; qecho "Downloading files..." "0;32"
 #curl --progress-bar -o $TARGET/master.tar.gz -L $ZIP
