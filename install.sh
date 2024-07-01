@@ -31,10 +31,10 @@ cp -r $TARGET/QRedshiftCinnamon-master/files/qredshift@quintao  $TARGET
 rm -r $TARGET/QRedshiftCinnamon-master
 qecho " Done!\n" "1"
 
-#qecho " => " "1"; qecho "Opening Applets Settings..." "0;32"
-#setsid cinnamon-settings applets &> /dev/null &
-#qecho " Done!\n" "1"
+qecho " => " "1"; qecho "Opening Applets Settings..." "0;32"
+setsid cinnamon-settings applets &> /dev/null &
+qecho " Done!\n" "1"
 
-qecho " => " "1"; qecho "Reloading Settings..." "0;32"
+qecho " => " "1"; qecho "Reloading Applet..." "0;32"
 dbus-send --session --dest=org.Cinnamon.LookingGlass --type=method_call /org/Cinnamon/LookingGlass org.Cinnamon.LookingGlass.ReloadExtension string:qredshift@quintao string:'APPLET'
 qecho " Done!\n" "1"
