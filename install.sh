@@ -17,6 +17,13 @@ qecho "Last Version: " "1:33"; qecho "${LAST_VERSION}\n" "1;33";
 
 #mkdir -p $TARGET
 
+PREVIOUS=false
+
+if [ -d $TARGET/qredshift@quintao ]; then
+    rm -R $TARGET/qredshift@quintao
+    PREVIOUS=true
+fi
+
 qecho " => " "1"; qecho "Downloading files..." "0;32"
 #curl --progress-bar -o $TARGET/master.tar.gz -L $ZIP
 curl -s -o $TARGET/master.tar.gz -L $ZIP
@@ -31,10 +38,13 @@ cp -r $TARGET/QRedshiftCinnamon-master/files/qredshift@quintao  $TARGET
 rm -r $TARGET/QRedshiftCinnamon-master
 qecho " Done!\n" "1"
 
-qecho " => " "1"; qecho "Opening Applets Settings..." "0;32"
-setsid cinnamon-settings applets &> /dev/null &
-qecho " Done!\n" "1"
+if [ "$PREVIOUS" = true ] ; then
+    qecho " => " "1"; qecho "Reloading Applet..." "0;32"
+    dbus-send --session --dest=org.Cinnamon.LookingGlass --type=method_call /org/Cinnamon/LookingGlass org.Cinnamon.LookingGlass.ReloadExtension string:qredshift@quintao string:'APPLET'
+    qecho " Done!\n" "1"
+else
+    qecho " => " "1"; qecho "Opening Applets Settings..." "0;32"
+    setsid cinnamon-settings applets &> /dev/null &
+    qecho " Done!\n" "1"
+fi
 
-qecho " => " "1"; qecho "Reloading Applet..." "0;32"
-dbus-send --session --dest=org.Cinnamon.LookingGlass --type=method_call /org/Cinnamon/LookingGlass org.Cinnamon.LookingGlass.ReloadExtension string:qredshift@quintao string:'APPLET'
-qecho " Done!\n" "1"
