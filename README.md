@@ -26,6 +26,11 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
 * Independent of redshift package.
 
 ## Changelog
+* 2.0.1
+  * New icons
+  * Improved interface
+  * Architeture check and notify
+  * Location is back and better.
 
 * 2.0.0
     * Original repository renamed to [QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon).
@@ -121,12 +126,11 @@ If you want to submit some translations please make it on the original repositor
 
 <span style="display:block; text-align:center">
 
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshot.png)
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot1.png)
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot2.png)
-
-![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot3.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/screenshot.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/config_1.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/config_2.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/config_3.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/config_4.png)
+![](https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/screenshots/config_5.png)
 
 </span>

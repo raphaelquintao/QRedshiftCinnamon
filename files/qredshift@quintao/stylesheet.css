@@ -1,7 +1,7 @@
 .q-icon-bar .q-icon-bar-holder {
     margin: 0;
     padding: 0;
-
+    spacing: 0;
 }
 
 .q-icon-bar .q-icon-bar-holder .q-icon {
@@ -39,7 +39,8 @@
 }
 
 .q-text-bold {
-    font-weight: bolder;
+    font-weight: bold;
+    /*background: #b05b79;*/
 }
 
 .q-text-medium {
@@ -47,13 +48,46 @@
 }
 
 .q-text-bigger {
-    font-size: 1.1em;
+    font-size: 1.15em;
 }
 
 .q-text-smaller {
     font-size: 0.9em;
 }
 
+.q-sun-bar {
+    /*background: #500b28;*/
+    padding: 0;
+    margin: 0;
+    spacing: 0;
+}
+
+.q-sun-bar-city {
+    /*background: rgba(176, 91, 121, 0.6);*/
+    font-weight: bold;
+    min-width: 50px;
+}
+
+.q-sun-bar-left {
+
+}
+
+.q-sun-bar-right {
+    /*background-color: rgba(255, 153, 0, 0.58);*/
+    spacing: 0.8em;
+    padding: 0;
+    margin: 0;
+}
+
+.q-sun-bar-item {
+    margin: 0;
+    spacing: 0.4em;
+    border-radius: 2px;
+}
+
+.q-sun-bar-item:active {
+    /*background-color: rgba(2, 2, 3, 0.9);*/
+}
 
 .hide {
     height: 40px;

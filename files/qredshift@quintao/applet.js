@@ -1,6 +1,5 @@
 const Applet = imports.ui.applet;
 
-
 const PopupMenu = imports.ui.popupMenu;
 const Util = imports.misc.util;
 const GLib = imports.gi.GLib;
@@ -24,22 +23,34 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
-
 global.DEBUG = true;
 
+/**
+ * @callback require
+ * @param {string} type
+ * @return {any}
+ */
 
 /** @type QUtils */
 const QUtils = require('./lib/QUtils.js');
 
+/** @type QGui */
+const QGui = require('./lib/QGui.js');
+
+/** @type QSunCalc */
+const QSunCalc = require('./lib/QSunCalc.js');
+
 const qLOG = QUtils.qLOG;
 const lerp = QUtils.lerp;
 
-const QIcon = QUtils.QIcon;
-const QPopupHeader = QUtils.QPopupHeader;
-const QPopupIconBar = QUtils.QPopupIconBar;
-const QPopupSlider = QUtils.QPopupSlider;
-const QPopupSwitch = QUtils.QPopupSwitch;
+// qLOG('=>>>>>>>>>>>>>>>>>>>>>', QSunCalc.SunCalc);
 
+const QIcon = QGui.QIcon;
+const QPopupHeader = QGui.QPopupHeader;
+const QPopupIconBar = QGui.QPopupIconBar;
+const QPopupSlider = QGui.QPopupSlider;
+const QPopupSwitch = QGui.QPopupSwitch;
+const QPopupLocation = QGui.QPopupLocation;
 
 const ICON_OFF = "/icons/light-off.svg";
 const ICON_ON = "/icons/light-on.svg";
@@ -47,20 +58,28 @@ const ICON_ON = "/icons/light-on.svg";
 const S_ICON_OFF = "redshift-status-off-symbolic";
 const S_ICON_ON = "redshift-status-on-symbolic";
 
+const ICONS = {
+    ICON_OFF: "light-off",
+    ICON_ON: "light-on",
+    S_ICON_OFF: "qredshift-status-off-symbolic",
+    S_ICON_ON: "qredshift-status-on-symbolic",
+};
+
 
 class QRedshift extends Applet.TextIconApplet {
     
-    /** @type QUtils.QPopupHeader | null */
-    redshift_config_menu_item = null;
-    /** @type QUtils.QPopupHeader | null */
+    /** @type QGui.QPopupHeader | null */
     redshift_info_menu_item = null;
     
-    /** @type QUtils.QPopupHeader | null */
+    /** @type QGui.QPopupHeader | null */
     menu_wayland_info = null;
+    
+    /** @type QGui.QPopupLocation */
+    menu_location = null;
     
     _current_temp = 0;
     _current_brightness = 0;
-    _current_gamma = 0;
+    current_gamma = 0;
     
     get current_temp() {
         return this._current_temp;
@@ -78,64 +97,60 @@ class QRedshift extends Applet.TextIconApplet {
         this._current_brightness = parseInt(value);
     }
     
-    get current_gamma() {
-        return this._current_gamma;
-    }
-    
-    set current_gamma(value) {
-        this._current_gamma = value;
-    }
+    // Options
+    opt = {
+        debug: global.DEBUG,
+        redshift_version: 0,
+        enabled: true,
+        enableAtStartup: false,
+        autoUpdate: false,
+        autoUpdateInterval: 20,
+        smoothTransition: true,
+        transitionDuration: 10, // In minutes
+        labelScrollAction: 'disabled',
+        iconLabel: false,
+        iconLabelAlways: true,
+        symbolicIcon: false,
+        
+        keyToggle: '',
+        keyBrightnessUp: '',
+        keyBrightnessDown: '',
+        keyTempUp: '',
+        keyTempDown: '',
+        keyGammaUp: '',
+        keyGammaDown: '',
+        
+        stepTemp: 50,
+        stepBright: 1,
+        stepGamma: 0.01,
+        
+        dayTemp: 6500,
+        dayBrightness: 1,
+        gammaMix: 1,
+        
+        enabledNight: false,
+        manualNightTime: false,
+        nightStart: {
+            h: 0,
+            m: 0
+        },
+        nightEnd: {
+            h: 0,
+            m: 0
+        },
+        nightTemp: 3500,
+        nightBrightness: 1,
+        
+        locationRemote: true,
+        locationCity: '',
+        locationLatitude: '0',
+        locationLongitude: '0',
+        period: '-'
+    };
     
     constructor(metadata, orientation, panel_height, instance_id) {
         super(orientation, panel_height, instance_id);
         this.metadata = metadata;
-        
-        this.opt = {
-            redshift_version: 0,
-            enabled: true,
-            enableAtStartup: false,
-            autoUpdate: false,
-            autoUpdateInterval: 20,
-            smoothTransition: true,
-            transitionDuration: 10, // In minutes
-            adjustmentMethod: 'randr',
-            labelScrollAction: 'disabled',
-            iconLabel: false,
-            iconLabelAlways: true,
-            symbolicIcon: false,
-            
-            keyToggle: '',
-            keyBrightnessUp: '',
-            keyBrightnessDown: '',
-            keyTempUp: '',
-            keyTempDown: '',
-            keyGammaUp: '',
-            keyGammaDown: '',
-            
-            stepTemp: 50,
-            stepBright: 1,
-            stepGamma: 0.01,
-            
-            dayTemp: 6500,
-            dayBrightness: 1,
-            gammaMix: 1,
-            
-            enabledNight: false,
-            nightStart: {
-                h: 0,
-                m: 0
-            },
-            nightEnd: {
-                h: 0,
-                m: 0
-            },
-            nightTemp: 3500,
-            nightBrightness: 1,
-            
-            locationLatitude: '0',
-            locationLongitude: '0',
-            period: '-'
-        };
         
         this.time = {
             nightStart: {
@@ -149,6 +164,10 @@ class QRedshift extends Applet.TextIconApplet {
         };
         
         this.wayland = QUtils.is_wayland();
+        this.arch = QUtils.architeture();
+        
+        
+        this.bin_path = `${this.metadata.path}/bin/qredshift_${this.arch}`;
         
         // Bind Settings
         this.settings = new Settings.AppletSettings(this.opt, metadata.uuid, instance_id);
@@ -162,7 +181,6 @@ class QRedshift extends Applet.TextIconApplet {
         this.settings.bind("enableAtStartup", "enableAtStartup");
         this.settings.bind('autoUpdate', 'autoUpdate', this.on_setting_change.bind(this), {key: 'autoUpdate'});
         this.settings.bind('autoUpdateInterval', 'autoUpdateInterval', this.on_setting_change.bind(this), {key: 'autoUpdateInterval'});
-        // this.settings.bind('adjustmentMethod', 'adjustmentMethod', this.onSettChange.bind(this), {key: 'adjustmentMethod'});
         this.settings.bind('labelScrollAction', 'labelScrollAction');
         this.settings.bind('iconLabel', 'iconLabel', () => {
             this.hide_applet_label(!this.opt.iconLabel);
@@ -173,6 +191,8 @@ class QRedshift extends Applet.TextIconApplet {
             // this.opt.symbolicIcon = value;
             this.set_icon();
         });
+        this.settings.bind('smoothTransition', 'smoothTransition', this.on_setting_change.bind(this), {key: 'smoothTransition'});
+        this.settings.bind('transitionDuration', 'transitionDuration', this.on_setting_change.bind(this), {key: 'transitionDuration'});
         
         
         this.settings.bind('dayTemp', 'dayTemp', this.on_setting_change.bind(this), {key: 'dayTemp'});
@@ -180,8 +200,7 @@ class QRedshift extends Applet.TextIconApplet {
         this.settings.bind('gammaMix', 'gammaMix', this.on_setting_change.bind(this), {key: 'gammaMix'});
         
         this.settings.bind('enabledNight', 'enabledNight', this.on_setting_change.bind(this), {key: 'enabledNight'});
-        this.settings.bind('smoothTransition', 'smoothTransition', this.on_setting_change.bind(this), {key: 'smoothTransition'});
-        this.settings.bind('transitionDuration', 'transitionDuration', this.on_setting_change.bind(this), {key: 'transitionDuration'});
+        this.settings.bind('manualNightTime', 'manualNightTime', this.on_setting_change.bind(this), {key: 'manualNightTime'});
         this.settings.bind('nightTemp', 'nightTemp', this.on_setting_change.bind(this), {key: 'enabled'});
         this.settings.bind('nightBrightness', 'nightBrightness', this.on_setting_change.bind(this), {key: 'nightBrightness'});
         
@@ -191,7 +210,9 @@ class QRedshift extends Applet.TextIconApplet {
                 this.time.nightStart.h = this.opt.nightStart.h;
                 this.time.nightStart.m = this.opt.nightStart.m;
                 
-                // qLOG("NIGHT START", this.opt.nightStart);
+                qLOG("NIGHT START", this.opt.nightStart);
+                
+                this.on_location_update();
                 this.doUpdate();
             }
         });
@@ -201,14 +222,23 @@ class QRedshift extends Applet.TextIconApplet {
                 this.time.nightEnd.h = this.opt.nightEnd.h;
                 this.time.nightEnd.m = this.opt.nightEnd.m;
                 
-                // qLOG("NIGHT END", this.opt.nightEnd);
+                qLOG("NIGHT END", this.opt.nightEnd);
+                
+                this.on_location_update();
                 this.doUpdate();
             }
         });
         
+        this.time.nightStart.h = this.opt.nightStart.h;
+        this.time.nightStart.m = this.opt.nightStart.m;
+        this.time.nightEnd.h = this.opt.nightEnd.h;
+        this.time.nightEnd.m = this.opt.nightEnd.m;
         
-        // this.settings.bind('locationLatitude', 'locationLatitude', this.onSettChange.bind(this));
-        // this.settings.bind('locationLongitude', 'locationLongitude', this.onSettChange.bind(this));
+        
+        this.settings.bind('locationRemote', 'locationRemote', this.on_setting_change.bind(this), {key: 'locationRemote'});
+        this.settings.bind('locationCity', 'locationCity', this.on_setting_change.bind(this), {key: 'locationCity'});
+        this.settings.bind('locationLatitude', 'locationLatitude', this.on_setting_change.bind(this), {key: 'locationLatitude'});
+        this.settings.bind('locationLongitude', 'locationLongitude', this.on_setting_change.bind(this), {key: 'locationLongitude'});
         
         this.settings.bind("keyToggle", "keyToggle", this.on_shortcut_change.bind(this));
         this.settings.bind("keyBrightnessUp", "keyBrightnessUp", this.on_shortcut_change.bind(this));
@@ -223,11 +253,8 @@ class QRedshift extends Applet.TextIconApplet {
         this.settings.bind('stepTemp', 'stepTemp', this.on_setting_change.bind(this), {key: 'stepTemp'});
         this.settings.bind('stepGamma', 'stepGamma', this.on_setting_change.bind(this), {key: 'stepGamma'});
         
+        this.settings.bind('debugToggle', 'debug', (value) => {global.DEBUG = value;}, null);
         
-        this.time.nightStart.h = this.opt.nightStart.h;
-        this.time.nightStart.m = this.opt.nightStart.m;
-        this.time.nightEnd.h = this.opt.nightEnd.h;
-        this.time.nightEnd.m = this.opt.nightEnd.m;
         
         
         
@@ -238,7 +265,7 @@ class QRedshift extends Applet.TextIconApplet {
         if (!this.opt.enabled && !this.opt.iconLabelAlways) this.hideLabel();
         
         
-        qLOG("QRedshift", 'Created');
+        qLOG("QRedshift", this.arch);
         
         this.maxBrightness = 100;
         this.minBrightness = 10;
@@ -307,41 +334,80 @@ class QRedshift extends Applet.TextIconApplet {
         
         // qLOG("KEY|");
         this.on_shortcut_change();
+        this.on_location_update();
         
         this.running = false;
         this.timeout_info = 0;
         
-        // Make binary executable
-        QUtils.spawn_command_line_sync_string_response(`chmod +x ${this.metadata.path}/bin/qredshift`);
         
-        // --- Async Loading ---
-        QUtils.spawn_command_line_async_promise(`${this.metadata.path}/bin/qredshift -v`).then(value => {
-            qLOG("ASYNC LOADING", value);
-            // Mainloop.source_remove(this.timeout_info);
+        if (this.wayland) {
+            this.set_applet_label(_("Not supported on wayland!"));
+            this.menu_wayland_info = new QPopupHeader({
+                reactive: true,
+                label: "Wayland",
+                sub_label: _("Not supported on wayland!"),
+                iconName: "dialog-error", //dialog-warning-symbolic
+                iconSize: 18,
+                tooltip: _("Automatically disabled under Wayland due to cinnamon compositor not yet support gamma ramps change.")
+            });
+            this.menu.addMenuItem(this.menu_wayland_info, 4);
             
-            // Disable Redshift for safety.
-            // this.disable_redshift_service();
-            
-            // Load Information
-            // this.set_adjustment_methods(false);
-            // this.set_location(false);
-            
-            if (this.wayland) {
-                this.set_applet_label(_("Not supported on wayland!"));
-            } else {
-                this.doUpdate();
-            }
-            
-        }).catch(reason => {
-            qLOG("ASYNC LOADING ERROR", reason);
-            // this.timeout_info = Mainloop.timeout_add_seconds(1, () => {
+            // return;
+        }
+        
+        this.supported_archs = ["x86_64"];
+        
+        if (!this.supported_archs.includes(this.arch)) {
             this.set_icon();
-            this.set_applet_label(_("Something went wrong!"));
-            this.set_applet_tooltip(_("Something went wrong!"));
+            this.set_applet_label(_("Unsupported architecture") + ` ${this.arch}`);
+            // this.hide_applet_label(false);
+            let arch_menu = new QPopupHeader({
+                reactive: true,
+                activate: true,
+                label: this.arch,
+                sub_label: _("Unsupported architecture"),
+                iconName: "dialog-error", //dialog-warning-symbolic
+                iconSize: 18,
+                tooltip: _("Unsupported architecture, click here to report.")
+            });
+            arch_menu.connect('activate', (actor, value) => {
+                this.open_project_issue_page();
+            });
+            this.menu.addMenuItem(arch_menu, 4);
             
-            // }, null);
-        });
+        } else {
+            // Make binary executable
+            QUtils.spawn_command_line_sync_string_response(`chmod +x ${this.bin_path}`);
+            
+            // --- Async Loading ---
+            QUtils.spawn_command_line_async_promise(`${this.bin_path} -v`).then(value => {
+                qLOG("ASYNC LOADING", value);
+                // Mainloop.source_remove(this.timeout_info);
+                
+                // Disable Redshift for safety.
+                // this.disable_redshift_service();
+                
+                // Load Information
+                // this.set_adjustment_methods(false);
+                this.set_location(false);
+                
+                this.doUpdate();
+                
+            }).catch(reason => {
+                qLOG("ASYNC LOADING ERROR", reason);
+                // this.timeout_info = Mainloop.timeout_add_seconds(1, () => {
+                this.set_icon();
+                this.set_applet_label(_("Something went wrong!"));
+                this.set_applet_tooltip(_("Something went wrong!"));
+                // this.hide_applet_label(false);
+                // }, null);
+            });
+        }
+        
+        
+        
     }
+    
     
     /**
      * @typedef {{period: ('day'|'night'|'transition_to_day'|'transition_to_night'), is_night: boolean, percent: number}} check_period_return
@@ -414,21 +480,32 @@ class QRedshift extends Applet.TextIconApplet {
         return response;
     }
     
+    
+    
     set_icon() {
         // qLOG('ICON', this.opt.symbolicIcon);
         
         if (this.opt.symbolicIcon) {
+            if (this.opt.enabled)
+                // this.set_applet_icon_symbolic_path(`${this.metadata.path}/icons/` + "qredshift_s.svg");
+                this.set_applet_icon_symbolic_name('qredshift-on-symbolic');
+            else
+                // this.set_applet_icon_symbolic_path(`${this.metadata.path}/icons/` + "qredshift_s.svg");
+                this.set_applet_icon_symbolic_name('qredshift-off-symbolic');
+            // this.set_applet_icon_symbolic_name(ICONS.S_ICON_OFF);
+        } else {
             // this.set_applet_icon_symbolic_path('');
             if (this.opt.enabled)
-                this.set_applet_icon_symbolic_name(S_ICON_ON);
+                this.set_applet_icon_path(`${this.metadata.path}/icons/` + 'qredshift.svg');
             else
-                this.set_applet_icon_symbolic_name(S_ICON_OFF);
+                this.set_applet_icon_path(`${this.metadata.path}/icons/` + 'qredshift-off.svg');
+            // this.set_applet_icon_path(`${this.metadata.path}/icons/` + ICONS.S_ICON_OFF);
+        }
+        
+        if (this.opt.enabled) {
+            if (this.headerIcon) this.headerIcon.setIconPath(this.metadata.path + '/icons/qredshift.svg');
         } else {
-            this.set_applet_icon_symbolic_path('');
-            if (this.opt.enabled)
-                this.set_applet_icon_symbolic_path(this.metadata.path + ICON_ON);
-            else
-                this.set_applet_icon_symbolic_path(this.metadata.path + ICON_OFF);
+            if (this.headerIcon) this.headerIcon.setIconPath(this.metadata.path + '/icons/qredshift-off.svg');
         }
     }
     
@@ -452,59 +529,7 @@ class QRedshift extends Applet.TextIconApplet {
         });
     }
     
-    check_local_config() {
-        let path = "/.config/redshift.conf";
-        Util.spawnCommandLineAsync("cat " + HOME + path, (out) => {
-            if (this.redshift_config_menu_item == null) {
-                this.redshift_config_menu_item = new QPopupHeader({
-                    label: "~/.config/redshift.conf",
-                    sub_label: _("should be removed."),
-                    iconName: "dialog-warning", //dialog-warning-symbolic
-                    iconSize: 16
-                });
-                this.menu.addMenuItem(this.redshift_config_menu_item, 2);
-            }
-        }, (out) => {
-            if (this.redshift_config_menu_item !== null) {
-                this.redshift_config_menu_item.destroy();
-                this.redshift_config_menu_item = null;
-            }
-        });
-        
-    }
-    
-    check_redshift_gtk() {
-        let redshiftgtk_path = GLib.find_program_in_path("redshift-gtk");
-        if (redshiftgtk_path != null) {
-            if (this.redshift_info_menu_item == null) {
-                if (QUtils.is_arch_linux()) {
-                    this.redshift_info_menu_item = new QPopupHeader({
-                        label: "redshift",
-                        sub_label: _("should be replaced by redshift-minimal"),
-                        iconName: "dialog-warning", //dialog-warning-symbolic
-                        iconSize: 16
-                    });
-                } else {
-                    this.redshift_info_menu_item = new QPopupHeader({
-                        label: "redshift-gtk",
-                        sub_label: _("should be removed."),
-                        iconName: "dialog-warning", //dialog-warning-symbolic
-                        iconSize: 16
-                    });
-                }
-                this.menu.addMenuItem(this.redshift_info_menu_item, 2);
-            }
-        } else {
-            if (this.redshift_info_menu_item !== null) {
-                this.redshift_info_menu_item.destroy();
-                this.redshift_info_menu_item = null;
-            }
-        }
-    }
-    
     check_old_redshift() {
-        if (this.wayland) return;
-        
         QUtils.spawn_command_line_async_promise('redshift -V').then(value => {
             // qLOG('OLD REDSHIFT', value);
             
@@ -517,7 +542,7 @@ class QRedshift extends Applet.TextIconApplet {
                     iconSize: 16,
                     tooltip: _("Old Redshift package is no longer required and can be safely removed.")
                 });
-                this.menu.addMenuItem(this.redshift_info_menu_item, 2);
+                this.menu.addMenuItem(this.redshift_info_menu_item, 4);
             }
             
             this.disable_redshift_service();
@@ -538,25 +563,39 @@ class QRedshift extends Applet.TextIconApplet {
     }
     
     set_location(force = true) {
-        qLOG('set_location', 'asd');
+        qLOG('QRedshift', 'set_location');
         
-        let remoteEnable = this.settings.getValue('locationRemote');
+        if (!this.opt.locationRemote) return;
         
-        if (this.opt.locationLatitude != "0" && this.opt.locationLongitude != "0" && !force && !remoteEnable) return;
+        if (!force && this.opt.locationLatitude != "0" && this.opt.locationLongitude != "0") return;
         
-        // Util.spawn_async(['curl', 'https://geolocation-db.com/json/'], (out) => {
-        //     let {city, state, country_name, latitude, longitude} = JSON.parse(out);
-        //     let info = `${city}, ${state}, ${country_name}`;
-        //     this.opt.locationLatitude = `${latitude}`;
-        //     this.opt.locationLongitude = `${longitude}`;
-        // });
-        // QUtils.spawn_command_line_async_promise(`curl https://geolocation-db.com/json/`).then(value => {
-        //     let {city, state, country_name, latitude, longitude} = JSON.parse(value);
-        //     let info = `${city}, ${state}, ${country_name}`;
-        //     this.opt.locationLatitude = `${latitude}`;
-        //     this.opt.locationLongitude = `${longitude}`;
-        //     qLOG('set_location', value);
-        // });
+        let url = 'https://geoip.fedoraproject.org/city';
+        // url = 'https://geolocation-db.com/json/';
+        
+        
+        QUtils.spawn_command_line_async_promise(`curl -s ${url}`).then(value => {
+            let {city, country_name, latitude, longitude} = JSON.parse(value);
+            this.opt.locationLatitude = `${latitude}`;
+            this.opt.locationLongitude = `${longitude}`;
+            this.opt.locationCity = `${city}`;
+            qLOG('Location Response', value);
+            
+            this.on_location_update();
+            
+        }).catch(reason => {
+            qLOG('Location Error', reason);
+            this.opt.city = 'error';
+            
+            this.opt.locationLatitude = `0`;
+            this.opt.locationLongitude = `0`;
+            this.opt.locationCity = `-`;
+            
+            this.on_location_update();
+            if (force) {
+                QUtils.show_error_notification(_("Error searching for your location"));
+            }
+            
+        });
         
     }
     
@@ -607,9 +646,12 @@ class QRedshift extends Applet.TextIconApplet {
         
     }
     
-    
-    on_setting_change(value, data = {key: undefined}) {
-        // qLOG("onSettChange", value, data);
+    /**
+     * @param {any} value
+     * @param {{key: string}} data
+     */
+    on_setting_change(value = '', data = {key: undefined}) {
+        qLOG("onSettChange", value, data);
         
         this.enabledAuto.setToggleState(this.opt.autoUpdate);
         
@@ -639,111 +681,149 @@ class QRedshift extends Applet.TextIconApplet {
         this.nb_Slider.setValue(this.opt.nightBrightness);
         this.nb_Slider.setStep(this.opt.stepBright);
         
+        this.on_location_update();
+        
         this.doUpdate();
     }
+    
+    on_location_update() {
+        qLOG('on_location_update');
+        
+        let calc = new QSunCalc.SunCalc();
+        
+        if (this.opt.locationLatitude != '0' && this.opt.locationLongitude != '0') {
+            let info = calc.getTimes(new Date(), this.opt.locationLatitude, this.opt.locationLongitude);
+            let sunset = info.sunset.toLocaleTimeString();
+            let sunrise = info.sunrise.toLocaleTimeString();
+            
+            if (!this.opt.manualNightTime) {
+                this.opt.nightStart.h = info.sunset.getHours();
+                this.opt.nightStart.m = info.sunset.getMinutes();
+                this.opt.nightStart.save();
+                
+                this.opt.nightEnd.h = info.sunrise.getHours();
+                this.opt.nightEnd.m = info.sunrise.getMinutes();
+                this.opt.nightEnd.save();
+                
+                this.time.nightStart.h = this.opt.nightStart.h;
+                this.time.nightStart.m = this.opt.nightStart.m;
+                this.time.nightEnd.h = this.opt.nightEnd.h;
+                this.time.nightEnd.m = this.opt.nightEnd.m;
+            }
+        }
+        if (this.menu_location) this.menu_location.set_city_text(this.opt.locationCity);
+        
+        let d = new Date();
+        let date_s = new Date(d.getFullYear(), d.getMonth(), d.getDate(), this.time.nightStart.h, this.time.nightStart.m, 0);
+        let date_e = new Date(d.getFullYear(), d.getMonth(), d.getDate(), this.time.nightEnd.h, this.time.nightEnd.m, 0);
+        
+        if (this.menu_location) this.menu_location.set_sunset_text(date_s.toLocaleTimeString(undefined, {timeStyle: 'short'}));
+        if (this.menu_location) this.menu_location.set_sunrise_text(date_e.toLocaleTimeString(undefined, {timeStyle: 'short'}));
+    }
+    
     
     createPopup() {
         this.headerIcon = new QPopupHeader({
             label: this.metadata.name,
-            sub_label: this.metadata.version + "",
-            iconPath: this.metadata.path + '/icon.png'
+            sub_label: `${this.metadata.version}`,
+            iconPath: this.metadata.path + '/icons/qredshift.svg',
+            iconSize: 50
         });
-        this.menu.addMenuItem(this.headerIcon);
+        this.menu.addMenuItem(this.headerIcon, 0);
         
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         
-        if (this.wayland) {
-            this.menu_wayland_info = new QPopupHeader({
-                reactive: true,
-                label: _("Not supported on wayland!"),
-                // sub_label: _("should be removed."),
-                iconName: "dialog-error", //dialog-warning-symbolic
-                iconSize: 18,
-                tooltip: _("Automatically disabled under Wayland due to cinnamon compositor not yet support gamma ramps change.")
-            });
-            this.menu.addMenuItem(this.menu_wayland_info, 2);
-            
-            // return;
-        } else {
-            
-            // region -- DAY Settings --
-            
-            this.enabledDay = new QPopupSwitch({
-                label: _("Enabled"),
-                active: this.opt.enabled
-            });
-            this.enabledDay.connect('toggled', this.dayEnabledChange.bind(this));
-            this.menu.addMenuItem(this.enabledDay);
-            
-            // day color
-            this.dc_Slider = new QPopupSlider({
-                label: _("Temp:"), unit: 'K',
-                value: this.opt.dayTemp, min: this.minColor, max: this.maxColor, step: this.opt.stepTemp
-            });
-            this.dc_Slider.connect('value-changed', this.dayColorChange.bind(this));
-            this.dc_Slider.connect('right-click', (actor, value) => {
-                actor._setValueEmit('6500');
-            });
-            this.menu.addMenuItem(this.dc_Slider);
-            
-            // day bright
-            this.db_Slider = new QPopupSlider({
-                label: _("Bright:"), unit: '%',
-                value: this.opt.dayBrightness, min: this.minBrightness, max: 100, step: this.opt.stepBright
-            });
-            this.db_Slider.connect('value-changed', this.dayBrightChange.bind(this));
-            this.db_Slider.connect('right-click', (actor, value) => {
-                actor._setValueEmit('100');
-            });
-            this.menu.addMenuItem(this.db_Slider);
-            
-            // Gamma
-            this.gm_Slider = new QPopupSlider({
-                label: _("Gamma:"), unit: '',
-                value: this.opt.gammaMix, min: 0.5, max: 5, step: this.opt.stepGamma
-            });
-            this.gm_Slider.connect('value-changed', this.gammaMixChange.bind(this));
-            this.gm_Slider.connect('right-click', (actor, value) => {
-                actor._setValueEmit(1);
-            });
-            this.menu.addMenuItem(this.gm_Slider);
-            // endregion
-            
-            this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-            
-            // region -- Night Settings --
-            
-            this.enabledNight = new QPopupSwitch({
-                label: _("Night Enabled"),
-                active: this.opt.enabledNight
-            });
-            this.enabledNight.connect('toggled', this.nightEnabledChange.bind(this));
-            this.menu.addMenuItem(this.enabledNight);
-            
-            // night color
-            this.nc_Slider = new QPopupSlider({
-                label: _("Temp:"), unit: 'K',
-                value: this.opt.nightTemp, min: this.minColor, max: this.maxColor, step: this.opt.stepTemp
-            });
-            this.nc_Slider.connect('value-changed', this.nightColorChange.bind(this));
-            this.nc_Slider.connect('right-click', (actor, value) => {
-                actor._setValueEmit('6500');
-            });
-            this.menu.addMenuItem(this.nc_Slider);
-            
-            // night bright
-            this.nb_Slider = new QPopupSlider({
-                label: _("Bright:"), unit: '%',
-                value: this.opt.nightBrightness, min: this.minBrightness, max: 100, step: this.opt.stepBright
-            });
-            this.nb_Slider.connect('value-changed', this.nightBrightChange.bind(this));
-            this.nb_Slider.connect('right-click', (actor, value) => {
-                actor._setValueEmit('100');
-            });
-            this.menu.addMenuItem(this.nb_Slider);
-            // endregion
-            
-        }
+        this.menu_location = new QPopupLocation({
+            city: this.opt.locationCity,
+            sunrise_text: '-',
+            sunset_text: '-',
+            sunset_tooltip: _("Sunset"),
+            sunrise_tooltip: _("Sunrise"),
+            sunrise_icon: 'daytime-sunrise-symbolic',
+            sunset_icon: 'daytime-sunset-symbolic'
+        });
+        this.menu.addMenuItem(this.menu_location);
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        
+        
+        // region -- DAY Settings --
+        
+        this.enabledDay = new QPopupSwitch({
+            label: _("Enabled"),
+            active: this.opt.enabled
+        });
+        this.enabledDay.connect('toggled', this.dayEnabledChange.bind(this));
+        this.menu.addMenuItem(this.enabledDay);
+        
+        // day color
+        this.dc_Slider = new QPopupSlider({
+            label: _("Temp:"), unit: 'K',
+            value: this.opt.dayTemp, min: this.minColor, max: this.maxColor, step: this.opt.stepTemp
+        });
+        this.dc_Slider.connect('value-changed', this.dayColorChange.bind(this));
+        this.dc_Slider.connect('right-click', (actor, value) => {
+            actor._setValueEmit('6500');
+        });
+        this.menu.addMenuItem(this.dc_Slider);
+        
+        // day bright
+        this.db_Slider = new QPopupSlider({
+            label: _("Bright:"), unit: '%',
+            value: this.opt.dayBrightness, min: this.minBrightness, max: 100, step: this.opt.stepBright
+        });
+        this.db_Slider.connect('value-changed', this.dayBrightChange.bind(this));
+        this.db_Slider.connect('right-click', (actor, value) => {
+            actor._setValueEmit('100');
+        });
+        this.menu.addMenuItem(this.db_Slider);
+        
+        // Gamma
+        this.gm_Slider = new QPopupSlider({
+            label: _("Gamma:"), unit: '',
+            value: this.opt.gammaMix, min: 0.5, max: 5, step: this.opt.stepGamma
+        });
+        this.gm_Slider.connect('value-changed', this.gammaMixChange.bind(this));
+        this.gm_Slider.connect('right-click', (actor, value) => {
+            actor._setValueEmit(1);
+        });
+        this.menu.addMenuItem(this.gm_Slider);
+        // endregion
+        
+        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+        
+        // region -- Night Settings --
+        
+        this.enabledNight = new QPopupSwitch({
+            label: _("Night Enabled"),
+            active: this.opt.enabledNight
+        });
+        this.enabledNight.connect('toggled', this.nightEnabledChange.bind(this));
+        this.menu.addMenuItem(this.enabledNight);
+        
+        // night color
+        this.nc_Slider = new QPopupSlider({
+            label: _("Temp:"), unit: 'K',
+            value: this.opt.nightTemp, min: this.minColor, max: this.maxColor, step: this.opt.stepTemp
+        });
+        this.nc_Slider.connect('value-changed', this.nightColorChange.bind(this));
+        this.nc_Slider.connect('right-click', (actor, value) => {
+            actor._setValueEmit('3500');
+        });
+        this.menu.addMenuItem(this.nc_Slider);
+        
+        // night bright
+        this.nb_Slider = new QPopupSlider({
+            label: _("Bright:"), unit: '%',
+            value: this.opt.nightBrightness, min: this.minBrightness, max: 100, step: this.opt.stepBright
+        });
+        this.nb_Slider.connect('value-changed', this.nightBrightChange.bind(this));
+        this.nb_Slider.connect('right-click', (actor, value) => {
+            actor._setValueEmit('100');
+        });
+        this.menu.addMenuItem(this.nb_Slider);
+        // endregion
+        
+        
         
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         
@@ -795,8 +875,9 @@ class QRedshift extends Applet.TextIconApplet {
     
     //region -- ON Slider Changes --
     autoUpdateChange(switcher, value) {
-        this.opt.autoUpdate = value;
-        this.doUpdate();
+        // this.opt.locationCity = 'asd';
+        // this.opt.autoUpdate = value;
+        // this.doUpdate();
     }
     
     dayEnabledChange(switcher, value) {
@@ -849,7 +930,7 @@ class QRedshift extends Applet.TextIconApplet {
         qLOG('QRedshift', 'ADDED TO PANEL');
         if (this.wayland)
             this.opt.enabled = false;
-        else if (this.opt.enableAtStartup === true){
+        else if (this.opt.enableAtStartup === true) {
             this.opt.enabled = true;
             this.enabledDay.setToggleState(this.opt.enabled);
         }
@@ -876,11 +957,13 @@ class QRedshift extends Applet.TextIconApplet {
         }
         this.settings.finalize();
         
-        this.restore();
+        this.command_restore();
     }
     
     doUpdate() {
         this.update();
+        
+        if (this.wayland) return;
         
         if (this.timeout) {
             Mainloop.source_remove(this.timeout);
@@ -891,10 +974,6 @@ class QRedshift extends Applet.TextIconApplet {
             this.timeout = Mainloop.timeout_add_seconds(this.opt.autoUpdateInterval, this.doUpdate.bind(this), null);
             // qLOG('auto update', this.opt.autoUpdateInterval);
         }
-    }
-    
-    restore() {
-        QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t`);
     }
     
     update() {
@@ -923,23 +1002,40 @@ class QRedshift extends Applet.TextIconApplet {
         this.current_brightness = brigh;
         this.current_gamma = this.opt.gammaMix;
         
-        // if (this.opt.gammaMix) cmd += `-g ${this.opt.gammaMix} `;
-        
-        // qLOG('PRD', `${JSON.stringify(prd, null, 2)}`);
-        // qLOG('CMD', `Temp: ${this.current_temp}`, `Bright: ${this.current_brightness}`, `Gamma: ${this.current_gamma}`);
-        //
         if (this.opt.enabled) {
-            // qLOG('CMD', `${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
-            QUtils.spawn_command_line_sync_string_response(`${this.metadata.path}/bin/qredshift -t ${this.current_temp} -b ${this.current_brightness / 100} -g ${this.current_gamma}`);
+            this.command_update(this.current_temp, this.current_brightness / 100, this.current_gamma);
         } else {
-            this.restore();
+            this.command_restore();
         }
         
         
         this.update_header_info(prd);
         this.update_tooltip_and_label(prd);
         this.set_icon();
-        
+    }
+    
+    command_update(temp, bright, gamma) {
+        if (this.wayland) {
+            qLOG("QRedshift", "Wayland not supported");
+            return;
+        }
+        if (!this.supported_archs.includes(this.arch)) {
+            qLOG("QRedshift", `Architeture '${this.arch}' not supported`);
+            return;
+        }
+        QUtils.spawn_command_line_sync_string_response(`${this.bin_path} -t ${temp} -b ${bright} -g ${gamma}`);
+    }
+    
+    command_restore() {
+        if (this.wayland) {
+            qLOG("QRedshift", "Wayland not supported");
+            return;
+        }
+        if (!this.supported_archs.includes(this.arch)) {
+            qLOG("QRedshift", `Architeture '${this.arch}' not supported`);
+            return;
+        }
+        QUtils.spawn_command_line_sync_string_response(`${this.bin_path} -t`);
     }
     
     /**
@@ -1018,6 +1114,18 @@ class QRedshift extends Applet.TextIconApplet {
         this.set_applet_label(labeltext);
         this.hide_applet_label(!this.opt.iconLabel);
         if (!this.opt.enabled && !this.opt.iconLabelAlways) this.hideLabel();
+    }
+    
+    open_project_page() {
+        QUtils.spawn_command_line_sync_string_response("xdg-open https://github.com/raphaelquintao/QRedshiftCinnamon");
+    }
+    
+    open_project_issue_page() {
+        QUtils.spawn_command_line_sync_string_response("xdg-open https://github.com/raphaelquintao/QRedshiftCinnamon/issues");
+    }
+    
+    debug_toggle() {
+        global.DEBUG = !global.DEBUG;
     }
     
     make_pot_file() {
