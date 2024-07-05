@@ -16,7 +16,7 @@ elif [ "$DESKTOP_SESSION" != 'cinnamon' ]; then
 fi
 
 LAST_VERSION_1=$(curl -sSL "https://api.github.com/repos/raphaelquintao/QRedshiftCinnamon/releases/latest" | sed -n -E 's/.+"tag_name"\s*:\s*"v(.+)".+/\1/p')
-LAST_VERSION_2=$(curl -sSL "https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/latest_X" | sed -n -E 's/.+"tag_name"\s*:\s*"v(.+)".+/\1/p')
+LAST_VERSION_2=$(curl -sSL "https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/latest" | sed -n -E 's/.+"tag_name"\s*:\s*"v(.+)".+/\1/p')
 
 LAST_VERSION=''
 
