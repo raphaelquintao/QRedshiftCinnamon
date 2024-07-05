@@ -26,12 +26,14 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
 * Independent of redshift package.
 
 ## Changelog
+* 2.0.2
+  * Added auto-update based on GitHub releases.
+  * New icons for sunset and sunrise.
 * 2.0.1
-  * New icons
-  * Improved interface
-  * Architeture check and notify
+  * New icons.
+  * Improved interface.
+  * Architecture check and notify.
   * Location is back and better.
-
 * 2.0.0
     * Original repository renamed to [QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon).
     * Completely disabled on Wayland (wayland cinnamon compositor don't support gamma ramps yet).
@@ -41,7 +43,7 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
     * Added an option to configure step for shortcuts.
 
 <details closed>
-<summary>More</summary>
+<summary>Old</summary>
 
 * 1.7.7
     - Added smooth transition to brightness.

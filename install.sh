@@ -8,12 +8,40 @@ TARGET=~/.local/share/cinnamon/applets
 
 qecho "QRedshift Cinnamon Installation Script! \n" "1"
 
-LAST_VERSION=$(curl -s "https://raw.githubusercontent.com/raphaelquintao/QRedshiftCinnamon/master/files/qredshift%40quintao/metadata.json" | sed -n -E 's/.+"version"\s*:\s*"(.+)".+/\1/p')
+if [ "$DESKTOP_SESSION" = 'cinnamon-wayland' ]; then
+  qecho " => "; qecho "Applet not supported on Wayland, please run Cinnamon in X11!\n" "1;31"
+elif [ "$DESKTOP_SESSION" != 'cinnamon' ]; then
+  qecho " => "; qecho "You not running Cinnamon\n" "1;31"
+  exit
+fi
 
-ZIP='https://github.com/raphaelquintao/QRedshiftCinnamon/archive/refs/heads/master.tar.gz'
+LAST_VERSION_1=$(curl -sSL "https://api.github.com/repos/raphaelquintao/QRedshiftCinnamon/releases/latest" | sed -n -E 's/.+"tag_name"\s*:\s*"v(.+)".+/\1/p')
+LAST_VERSION_2=$(curl -sSL "https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/latest_X" | sed -n -E 's/.+"tag_name"\s*:\s*"v(.+)".+/\1/p')
 
+LAST_VERSION=''
 
-qecho "Last Version: " "1:33"; qecho "${LAST_VERSION}\n" "1;33";
+if [ "$LAST_VERSION_1" = '' ]; then
+  if [ "$LAST_VERSION_2" = '' ]; then
+    qecho " => "; qecho "Failed, check your internet connection.\n" "1;31"
+    exit
+  else
+    LAST_VERSION=$LAST_VERSION_2
+  fi
+else
+  LAST_VERSION=$LAST_VERSION_1
+fi
+
+if [ "$LAST_VERSION" = '' ]; then
+  qecho " => "; qecho "Failed, check your internet connection.\n" "1;31"
+  exit
+fi
+
+FILE_NAME="qredshift@quintao_$LAST_VERSION.tar.gz"
+
+ZIP_URL="https://github.com/raphaelquintao/QRedshiftCinnamon/releases/download/v$LAST_VERSION/$FILE_NAME"
+
+qecho "Latest Version: " "1:33"; qecho "${LAST_VERSION}\n" "1;33";
+
 
 #mkdir -p $TARGET
 
@@ -26,17 +54,18 @@ fi
 
 qecho " => " "1"; qecho "Downloading files..." "0;32"
 #curl --progress-bar -o $TARGET/master.tar.gz -L $ZIP
-curl -s -o $TARGET/master.tar.gz -L $ZIP
-qecho " Done!\n" "1"
-
-qecho " => " "1"; qecho "Unzipping..." "0;32"
-tar -xzf $TARGET/master.tar.gz -C $TARGET
-qecho " Done!\n" "1"
+if curl -s -o $TARGET/$LAST_VERSION.tar.gz -L $ZIP_URL; then
+  qecho " Done!\n" "1"
+else
+  qecho "\n => "; qecho "Failed to download, check your internet connection.\n" "1;31"
+  exit
+fi
 
 qecho " => " "1"; qecho "Installing..." "0;32"
-cp -r $TARGET/QRedshiftCinnamon-master/files/qredshift@quintao  $TARGET
-rm -r $TARGET/QRedshiftCinnamon-master
+tar -xzf $TARGET/$LAST_VERSION.tar.gz -C $TARGET
+rm $TARGET/$LAST_VERSION.tar.gz
 qecho " Done!\n" "1"
+
 
 if [ "$PREVIOUS" = true ] ; then
     qecho " => " "1"; qecho "Reloading Applet..." "0;32"

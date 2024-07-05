@@ -38,11 +38,14 @@
       "type": "page",
       "title": "Help",
       "sections": [
-        "section-tips",
+        "section-update",
         "section-project",
+        "section-tips",
         "section-debug"
       ]
     },
+    
+    
     
     "section-options": {
       "type": "section",
@@ -138,6 +141,15 @@
         "textInfo",
         "btnOpenGithub",
         "btnOpenGithubIssue"
+      ]
+    },
+    "section-update": {
+      "type": "section",
+      "title": "Update",
+      "keys": [
+        "autoCheckUpdate",
+        "checkUpdateInterval",
+        "btnUpdate"
       ]
     },
     "section-debug": {
@@ -399,7 +411,6 @@
   },
   
   
-  
   "textTips": {
     "type": "label",
     "description": "Right-click the sliders to reset the default (neutral) value."
@@ -422,9 +433,29 @@
     "description": "Submit an Issue",
     "callback": "open_project_issue_page"
   },
-  "debugToggle": {
+  "autoCheckUpdate": {
     "type": "checkbox",
     "default": true,
+    "description": "Automatically check for updates"
+  },
+  "checkUpdateInterval": {
+    "type": "spinbutton",
+    "dependency": "autoCheckUpdate=true",
+    "default": 180,
+    "min": 180,
+    "max": 10080,
+    "step": 1,
+    "units": "minutes",
+    "description": "Check update interval"
+  },
+  "btnUpdate": {
+    "type": "button",
+    "description": "Check For Updates",
+    "callback": "check_update"
+  },
+  "debugToggle": {
+    "type": "checkbox",
+    "default": false,
     "description": "Debug"
   }
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 03:48-0300\n"
+"POT-Creation-Date: 2024-07-05 06:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,126 +17,178 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: applet.js:284
+#: applet.js:293
 msgid "Reload Applet"
 msgstr ""
 
-#: applet.js:290
+#: applet.js:299
 msgid "Generate .POT file"
 msgstr ""
 
-#: applet.js:295
+#: applet.js:304
 msgid "Recompile Translations"
 msgstr ""
 
-#: applet.js:344 applet.js:348
+#: applet.js:363 applet.js:364
+msgid "Something went wrong!"
+msgstr ""
+
+#: applet.js:409 applet.js:415
+msgid "New Version Available"
+msgstr ""
+
+#: applet.js:416 applet.js:419
+msgid "Click to Update"
+msgstr ""
+
+#: applet.js:430
+msgid "You are running the latest version."
+msgstr ""
+
+#: applet.js:436
+msgid "Failed to check updates"
+msgstr ""
+
+#: applet.js:436
+msgid "Api Limit Exceeded"
+msgstr ""
+
+#: applet.js:453
+msgid "Updating! Your system may freeze for a few seconds."
+msgstr ""
+
+#: applet.js:454
+msgid "Downloading files..."
+msgstr ""
+
+#: applet.js:458
+msgid "Installing..."
+msgstr ""
+
+#: applet.js:464
+msgid "Reloading Applet..."
+msgstr ""
+
+#: applet.js:466
+msgid "Updated successfully"
+msgstr ""
+
+#: applet.js:466
+msgid "Version installed"
+msgstr ""
+
+#: applet.js:471 applet.js:476
+msgid "Update failed"
+msgstr ""
+
+#: applet.js:480
+msgid "Failed to download update!"
+msgstr ""
+
+#: applet.js:617
+msgid "package can be removed."
+msgstr ""
+
+#: applet.js:620
+msgid "Old Redshift package is no longer required and can be safely removed."
+msgstr ""
+
+#: applet.js:639 applet.js:643
 msgid "Not supported on wayland!"
 msgstr ""
 
-#: applet.js:351
+#: applet.js:646
 msgid ""
 "Automatically disabled under Wayland due to cinnamon compositor not yet "
 "support gamma ramps change."
 msgstr ""
 
-#: applet.js:362 applet.js:368
+#: applet.js:652 applet.js:658
 msgid "Unsupported architecture"
 msgstr ""
 
-#: applet.js:371
+#: applet.js:661
 msgid "Unsupported architecture, click here to report."
 msgstr ""
 
-#: applet.js:400 applet.js:401
-msgid "Something went wrong!"
-msgstr ""
-
-#: applet.js:540
-msgid "package can be removed."
-msgstr ""
-
-#: applet.js:543
-msgid "Old Redshift package is no longer required and can be safely removed."
-msgstr ""
-
-#: applet.js:595
+#: applet.js:703
 msgid "Error searching for your location"
 msgstr ""
 
 #. settings-schema.json->nightTimeStart->description
-#: applet.js:740
+#: applet.js:848
 msgid "Sunset"
 msgstr ""
 
 #. settings-schema.json->nightTimeEnd->description
-#: applet.js:741
+#: applet.js:849
 msgid "Sunrise"
 msgstr ""
 
 #. settings-schema.json->enabled->description
-#: applet.js:752
+#: applet.js:863
 msgid "Enabled"
 msgstr ""
 
-#: applet.js:760 applet.js:805
+#: applet.js:871 applet.js:916
 msgid "Temp:"
 msgstr ""
 
-#: applet.js:771 applet.js:816
+#: applet.js:882 applet.js:927
 msgid "Bright:"
 msgstr ""
 
-#: applet.js:782 applet.js:1100
+#: applet.js:893 applet.js:1217
 msgid "Gamma:"
 msgstr ""
 
 #. settings-schema.json->enabledNight->description
-#: applet.js:797
+#: applet.js:908
 msgid "Night Enabled"
 msgstr ""
 
 #. settings-schema.json->iconLabel->description
-#: applet.js:861
+#: applet.js:972
 msgid "Show Label"
 msgstr ""
 
-#: applet.js:1050 applet.js:1076
+#: applet.js:1167 applet.js:1193
 msgid "Transition to day"
 msgstr ""
 
-#: applet.js:1051 applet.js:1077
+#: applet.js:1168 applet.js:1194
 msgid "Transition to night"
 msgstr ""
 
-#: applet.js:1052 applet.js:1078
+#: applet.js:1169 applet.js:1195
 msgid "Night"
 msgstr ""
 
-#: applet.js:1053 applet.js:1079
+#: applet.js:1170 applet.js:1196
 msgid "Day"
 msgstr ""
 
-#: applet.js:1069
+#: applet.js:1186
 msgid "On"
 msgstr ""
 
-#: applet.js:1069 applet.js:1070
+#: applet.js:1186 applet.js:1187
 msgid "Off"
 msgstr ""
 
-#: applet.js:1091
+#: applet.js:1208
 msgid "Day Temperature"
 msgstr ""
 
-#: applet.js:1092
+#: applet.js:1209
 msgid "Day Brightness"
 msgstr ""
 
-#: applet.js:1094
+#: applet.js:1211
 msgid "Night Temperature"
 msgstr ""
 
-#: applet.js:1095
+#: applet.js:1212
 msgid "Night Brightness"
 msgstr ""
 
@@ -144,14 +196,14 @@ msgstr ""
 #. settings-schema.json->dayTemp->description
 #. settings-schema.json->nightTemp->description
 #. settings-schema.json->stepTemp->description
-#: applet.js:1097
+#: applet.js:1214
 msgid "Temperature"
 msgstr ""
 
 #. settings-schema.json->dayBrightness->description
 #. settings-schema.json->nightBrightness->description
 #. settings-schema.json->stepBright->description
-#: applet.js:1098
+#: applet.js:1215
 msgid "Brightness"
 msgstr ""
 
@@ -219,6 +271,10 @@ msgstr ""
 
 #. settings-schema.json->section-project->title
 msgid "More about QRedshift"
+msgstr ""
+
+#. settings-schema.json->section-update->title
+msgid "Update"
 msgstr ""
 
 #. settings-schema.json->section-debug->title
@@ -394,4 +450,20 @@ msgstr ""
 
 #. settings-schema.json->btnOpenGithubIssue->description
 msgid "Submit an Issue"
+msgstr ""
+
+#. settings-schema.json->autoCheckUpdate->description
+msgid "Automatically check for updates"
+msgstr ""
+
+#. settings-schema.json->checkUpdateInterval->units
+msgid "minutes"
+msgstr ""
+
+#. settings-schema.json->checkUpdateInterval->description
+msgid "Check update interval"
+msgstr ""
+
+#. settings-schema.json->btnUpdate->description
+msgid "Check For Updates"
 msgstr ""
