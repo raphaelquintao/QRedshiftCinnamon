@@ -278,7 +278,7 @@ class QRedshift extends Applet.TextIconApplet {
 
     this.maxBrightness = 100;
     this.minBrightness = 10;
-    this.maxColor = 9000;
+    this.maxColor = 12000;
     this.minColor = 1000;
 
 
