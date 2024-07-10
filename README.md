@@ -5,7 +5,7 @@ A Cinnamon applet that makes the color of your computer's display adapt to the t
 Original Repository: [https://github.com/raphaelquintao/QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon)
 
 ## Downloads
-![downloads](https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/downloads/image?fg=e6edf3)
+![downloads](https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/downloads/image?fg=e6edf3!)
 
 
 ## Installation
