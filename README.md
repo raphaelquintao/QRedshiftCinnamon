@@ -5,7 +5,7 @@ A Cinnamon applet that makes the color of your computer's display adapt to the t
 Original Repository: [https://github.com/raphaelquintao/QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon)
 
 ### Total Downloads
-![downloads](https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/image)
+![downloads](https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/image?fg=e6edf3)
 
 
 ## Installation
@@ -31,7 +31,7 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
 
 ## Changelog
 * 2.0.3
-  * Max temperature incresed to 12000k
+  * Max temperature increased to 12000k
 * 2.0.2
   * Added auto-update based on GitHub releases.
   * New icons for sunset and sunrise.
