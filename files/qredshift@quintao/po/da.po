@@ -7,122 +7,206 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 04:01+0200\n"
-"PO-Revision-Date: 2023-12-25 10:43+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"POT-Creation-Date: 2024-07-12 06:02-0300\n"
+"PO-Revision-Date: 2024-07-12 06:05-0300\n"
+"Last-Translator: Henrik Agersted <sidebesked@gmail.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: applet.js:236
+#: applet.js:308
 msgid "Reload Applet"
 msgstr "Genindlæs panelprogrammet"
 
-#: applet.js:247
+#: applet.js:314
+msgid "Generate .POT file"
+msgstr "Generer .POT file"
+
+#: applet.js:319
 msgid "Recompile Translations"
-msgstr "Kompilér oversættelser igen"
+msgstr "Kompiler oversættelser igen"
 
-#: applet.js:299
-msgid "REDSHIFT NOT INSTALLED!"
-msgstr "REDSHIFT ER IKKE INSTALLERET!"
+#: applet.js:378 applet.js:379
+msgid "Something went wrong!"
+msgstr "Noget gik galt!"
 
-#: applet.js:302
-msgid "Requires Redshift: yay -S redshift-minimal"
-msgstr "Kræver Redshift: yay -S redshift-minimal"
+#: applet.js:424 applet.js:430
+msgid "New Version Available"
+msgstr "Ny version er tilgængelig"
 
-#: applet.js:305
-msgid "Requires Redshift: sudo apt-get install redshift"
-msgstr "Kræver Redshift: sudo apt-get install redshift"
+#: applet.js:431 applet.js:434
+msgid "Click to Update"
+msgstr "Klik for at opdatere"
 
-#: applet.js:457 applet.js:486
-msgid "should be removed."
-msgstr "bør fjernes."
+#: applet.js:445
+msgid "You are running the latest version."
+msgstr "Du bruger den seneste version."
+
+#: applet.js:451
+msgid "Failed to check updates"
+msgstr "Søgning efter opdatering, mislykkedes"
+
+#: applet.js:451
+msgid "Api Limit Exceeded"
+msgstr "For mange API opkald"
+
+#: applet.js:468
+msgid "Updating! Your system may freeze for a few seconds."
+msgstr "Opdaterer! Dit system vil muligvis fryse nogle sekunder."
+
+#: applet.js:469
+msgid "Downloading files..."
+msgstr "Henter filer..."
+
+#: applet.js:473
+msgid "Installing..."
+msgstr "Installerer..."
 
 #: applet.js:479
-msgid "should be replaced by redshift-minimal"
-msgstr "bør erstattes med redshift-minimal"
+msgid "Reloading Applet..."
+msgstr "Genindlæser applet..."
+
+#: applet.js:481
+msgid "Updated successfully"
+msgstr "Opdateret med succes"
+
+#: applet.js:481
+msgid "Version installed"
+msgstr "Version installeret"
+
+#: applet.js:486 applet.js:491
+msgid "Update failed"
+msgstr "Opdatering mislykkedes"
+
+#: applet.js:495
+msgid "Failed to download update!"
+msgstr "Det lykkedes ikke at hente opdatering!"
+
+#: applet.js:632
+msgid "package can be removed."
+msgstr "pakken kan fjernes."
+
+#: applet.js:635
+msgid "Old Redshift package is no longer required and can be safely removed."
+msgstr "Den gamle Redshift-pakke er ikke længere påkrævet og kan fjernes."
+
+#: applet.js:654 applet.js:658
+msgid "Not supported on wayland!"
+msgstr "Er ikke understøttet på Wayland!"
+
+#: applet.js:661
+msgid ""
+"Automatically disabled under Wayland due to cinnamon compositor not yet "
+"support gamma ramps change."
+msgstr ""
+"Automatisk deaktiveret under Wayland. Cinnamon compositor endnu ikke "
+"understøtter ændring af gamma ramper."
+
+#: applet.js:667 applet.js:673
+msgid "Unsupported architecture"
+msgstr "Ikke understøttet arkitektur"
+
+#: applet.js:676
+msgid "Unsupported architecture, click here to report."
+msgstr "Ikke understøttet arkitektur, klik her for at rapportere."
+
+#: applet.js:718
+msgid "Error searching for your location"
+msgstr "Fejl ved søgning efter din placering"
+
+#. settings-schema.json->nightTimeStart->description
+#: applet.js:864
+msgid "Sunset"
+msgstr "Solnedgang"
+
+#. settings-schema.json->nightTimeEnd->description
+#: applet.js:865
+msgid "Sunrise"
+msgstr "Solopgang"
 
 #. settings-schema.json->enabled->description
-#: applet.js:649
+#: applet.js:879
 msgid "Enabled"
 msgstr "Aktiveret"
 
-#: applet.js:657 applet.js:702
+#: applet.js:887 applet.js:932
 msgid "Temp:"
 msgstr "Temp:"
 
-#: applet.js:668 applet.js:713
+#: applet.js:898 applet.js:943
 msgid "Bright:"
 msgstr "Lys:"
 
-#: applet.js:679 applet.js:1011
+#: applet.js:909 applet.js:1233
 msgid "Gamma:"
 msgstr "Gamma:"
 
 #. settings-schema.json->enabledNight->description
-#: applet.js:694
+#: applet.js:924
 msgid "Night Enabled"
 msgstr "Nattilstand aktiveret"
 
 #. settings-schema.json->iconLabel->description
-#: applet.js:756
+#: applet.js:988
 msgid "Show Label"
 msgstr "Vis etiket"
 
-#: applet.js:969 applet.js:994
+#: applet.js:1183 applet.js:1209
 msgid "Transition to day"
 msgstr "Overgang til dag"
 
-#: applet.js:970 applet.js:995
+#: applet.js:1184 applet.js:1210
 msgid "Transition to night"
 msgstr "Overgang til nat"
 
-#: applet.js:971 applet.js:996
+#: applet.js:1185 applet.js:1211
 msgid "Night"
 msgstr "Nat"
 
-#: applet.js:972 applet.js:997
+#: applet.js:1186 applet.js:1212
 msgid "Day"
 msgstr "Dag"
 
-#: applet.js:986
+#: applet.js:1202
 msgid "On"
 msgstr "Til"
 
-#: applet.js:986 applet.js:988
+#: applet.js:1202 applet.js:1203
 msgid "Off"
 msgstr "Fra"
 
-#: applet.js:1002
+#: applet.js:1224
 msgid "Day Temperature"
 msgstr "Dagtemperatur"
 
-#: applet.js:1003
+#: applet.js:1225
 msgid "Day Brightness"
 msgstr "Daglysstyrke"
 
-#: applet.js:1005
+#: applet.js:1227
 msgid "Night Temperature"
 msgstr "Nattemperatur"
 
-#: applet.js:1006
+#: applet.js:1228
 msgid "Night Brightness"
 msgstr "Natlysstyrke"
 
 #. settings-schema.json->labelScrollAction->options
 #. settings-schema.json->dayTemp->description
 #. settings-schema.json->nightTemp->description
-#: applet.js:1008
+#. settings-schema.json->stepTemp->description
+#: applet.js:1230
 msgid "Temperature"
 msgstr "Temperatur"
 
 #. settings-schema.json->dayBrightness->description
 #. settings-schema.json->nightBrightness->description
-#: applet.js:1009
+#. settings-schema.json->stepBright->description
+#: applet.js:1231
 msgid "Brightness"
 msgstr "Lysstyrke"
 
@@ -135,12 +219,16 @@ msgid ""
 "It makes the color of your computer's display adapt to the time of day, warm "
 "at night and like sunlight during the day."
 msgstr ""
-"Får farven på computerens skærm til at tilpasse sig til tidspunktet på "
-"dagen, varm om natten og som sollys om dagen."
+"Tilpasser skærmens farvetemperatur efter tidspunktet på dagen, varm aften/"
+"nat og dagslys i dagtimerne."
 
-#. settings-schema.json->panel-options->title
-msgid "Settings"
-msgstr "Indstillinger"
+#. settings-schema.json->panel-general->title
+msgid "General"
+msgstr "''Generelt"
+
+#. settings-schema.json->panel-temperature->title
+msgid "Temperatures"
+msgstr "Temperaturer"
 
 #. settings-schema.json->panel-location->title
 msgid "Location"
@@ -150,13 +238,17 @@ msgstr "Placering"
 msgid "Shortcuts"
 msgstr "Genveje"
 
-#. settings-schema.json->info-section->title
-msgid "Tips"
-msgstr "Tips"
+#. settings-schema.json->panel-help->title
+msgid "Help"
+msgstr "Hjælp"
 
-#. settings-schema.json->opt-section->title
+#. settings-schema.json->section-options->title
 msgid "Options"
-msgstr "Valgmuligheder"
+msgstr "Indstillinger"
+
+#. settings-schema.json->section-behavior->title
+msgid "Behavior"
+msgstr "Opførsel"
 
 #. settings-schema.json->day-section->title
 msgid "Day Settings"
@@ -170,9 +262,35 @@ msgstr "Natindstillinger"
 msgid "Key Bindings"
 msgstr "Tastegenveje"
 
+#. settings-schema.json->step-section->title
+msgid "Step"
+msgstr "Trin"
+
 #. settings-schema.json->location-section->title
 msgid "Location Settings"
-msgstr "Placeringsindstillinger"
+msgstr "Indstillinger for placering"
+
+#. settings-schema.json->section-tips->title
+msgid "Tips"
+msgstr "Tips"
+
+#. settings-schema.json->section-project->title
+msgid "More about QRedshift"
+msgstr "Mere om QRedshift"
+
+#. settings-schema.json->section-update->title
+msgid "Update"
+msgstr "Opdater"
+
+#. settings-schema.json->section-debug->title
+#. settings-schema.json->debugToggle->description
+msgid "Debug"
+msgstr "Fejlsøg"
+
+#. settings-schema.json->enableAtStartup->description
+#. settings-schema.json->enableAtStartup->tooltip
+msgid "Reactivate QRedshift as soon as Cinnamon starts up"
+msgstr "Genaktiver QRedshift når Cinnamon starter op"
 
 #. settings-schema.json->autoUpdate->description
 msgid "Auto Update"
@@ -180,7 +298,7 @@ msgstr "Automatisk opdatering"
 
 #. settings-schema.json->autoUpdate->tooltip
 msgid "Continuously adjust color temperature"
-msgstr "Justér farvetemperaturen kontinuert"
+msgstr "Juster kontinuerligt farvetemperaturen"
 
 #. settings-schema.json->autoUpdateInterval->units
 msgid "Seconds"
@@ -190,29 +308,9 @@ msgstr "Sekunder"
 msgid "Update interval"
 msgstr "Opdateringsinterval"
 
-#. settings-schema.json->adjustmentMethod->description
-msgid "Adjustment Method"
-msgstr "Justeringsmetode"
-
-#. settings-schema.json->adjustmentMethod->options
-msgid "needload"
-msgstr "needload"
-
-#. settings-schema.json->adjustmentMethod->options
-msgid "randr"
-msgstr "randr"
-
-#. settings-schema.json->adjustmentMethod->options
-msgid "vidmode"
-msgstr "vidmode"
-
-#. settings-schema.json->adjustmentMethod->tooltip
-msgid "Method to use to set color temperature"
-msgstr "Metode til indstilling af farvetemperaturen"
-
 #. settings-schema.json->labelScrollAction->description
 msgid "Icon Scroll Action"
-msgstr "Ikonrulningshandling"
+msgstr "Ikonrullehandling"
 
 #. settings-schema.json->labelScrollAction->options
 msgid "Disabled"
@@ -229,6 +327,7 @@ msgstr "Lys"
 
 #. settings-schema.json->labelScrollAction->options
 #. settings-schema.json->gammaMix->description
+#. settings-schema.json->stepGamma->description
 msgid "Gamma"
 msgstr "Gamma"
 
@@ -239,6 +338,32 @@ msgstr "Handling ved rulning på ikonet."
 #. settings-schema.json->symbolicIcon->description
 msgid "Use symbolic icon"
 msgstr "Anvend symbolske ikoner"
+
+#. settings-schema.json->smoothTransition->description
+msgid "Smooth transition between day and night"
+msgstr "Blød overgang mellem dag og nat"
+
+#. settings-schema.json->transitionDuration->units
+msgid "Minutes"
+msgstr "Minutter"
+
+#. settings-schema.json->transitionDuration->description
+msgid "Transition Duration"
+msgstr "Varighed af overgang"
+
+#. settings-schema.json->dayTemp->units
+#. settings-schema.json->nightTemp->units
+msgid "K"
+msgstr "K"
+
+#. settings-schema.json->dayBrightness->units
+#. settings-schema.json->nightBrightness->units
+msgid "%"
+msgstr "%"
+
+#. settings-schema.json->manualNightTime->description
+msgid "Use Manual Night Time"
+msgstr "Anvend manuel nattid"
 
 #. settings-schema.json->keyBrightnessUp->description
 msgid "Increase brightness level"
@@ -264,52 +389,30 @@ msgstr "Forøg gammaniveau"
 msgid "Decrease gamma level"
 msgstr "Formindsk gammaniveau"
 
-#. settings-schema.json->dayTemp->units
-#. settings-schema.json->nightTemp->units
-msgid "K"
-msgstr "K"
+#. settings-schema.json->stepBright->tooltip
+#. settings-schema.json->stepGamma->tooltip
+msgid "Step when changing by shortcuts"
+msgstr "Trin, ved ændring med brug af genvej"
 
-#. settings-schema.json->dayBrightness->units
-#. settings-schema.json->nightBrightness->units
-msgid "%"
-msgstr "%"
-
-#. settings-schema.json->smoothTransition->description
-msgid "Smooth transition between day and night"
-msgstr "Blød overgang mellem dag og nat"
-
-#. settings-schema.json->transitionDuration->units
-msgid "Minutes"
-msgstr "Minutter"
-
-#. settings-schema.json->transitionDuration->description
-msgid "Transition Duration"
-msgstr "Varighed af overgang"
-
-#. settings-schema.json->manualNightTime->description
-msgid "Use Manual Night Time"
-msgstr "Anvend manuel nattetid"
-
-#. settings-schema.json->nightTimeStart->description
-msgid "Choose Start Time"
-msgstr "Vælg starttidspunkt"
-
-#. settings-schema.json->nightTimeEnd->description
-msgid "Choose End Time"
-msgstr "Vælg sluttidspunkt"
+#. settings-schema.json->stepTemp->tooltip
+msgid "Step when changing value by shortcuts"
+msgstr "Trin, ved ændring af værdi, med brug af genvej"
 
 #. settings-schema.json->locationRemote->description
 msgid "Remote Location"
-msgstr "Fjernplacering"
-
-#. settings-schema.json->locationRemote->tooltip
-#. settings-schema.json->locationUpdate->tooltip
-msgid "Native geoclue on redshift can make the experience slow."
-msgstr "Indbygget geoclue i redshift kan få det til at føles langsomt."
+msgstr "Hent placering fra internettet"
 
 #. settings-schema.json->locationUpdate->description
 msgid "Update Location"
 msgstr "Opdatér placering"
+
+#. settings-schema.json->locationCity->description
+msgid "City"
+msgstr "By"
+
+#. settings-schema.json->locationCity->tooltip
+msgid "Current City"
+msgstr "Nuværende by"
 
 #. settings-schema.json->locationLatitude->description
 msgid "Latitude"
@@ -321,15 +424,15 @@ msgstr "Længdegrad"
 
 #. settings-schema.json->aboutLocation->description
 msgid ""
-"Native geoclue on redshift can make the experience slow.\n"
-"Using: https://geolocation-db.com/"
+"This location is approximate! If it is wrong or if you want a more precise "
+"calculation, enter it manually."
 msgstr ""
-"Indbygget geoclue i redshift kan få det til at føles langsomt.\n"
-"Bruger: https://geolocation-db.com/"
+"Denne placering er omtrentlig! Hvis den er forkert, eller du vil have en "
+"mere præcis placering, kan du indtaste den manuelt."
 
 #. settings-schema.json->textTips->description
-msgid "* Right-click the sliders to reset the default (neutral) value."
-msgstr "* Højreklik skyderne for at nulstille til den neutrale standardværdi."
+msgid "Right-click the sliders to reset the default (neutral) value."
+msgstr "Højreklik på skyderne, for at nulstille til standardværdi (neutral)."
 
 #. settings-schema.json->textHelp->description
 msgid ""
@@ -338,15 +441,41 @@ msgid ""
 "You will lost all your configs."
 msgstr ""
 "Når du opdaterer til en ny version, skal du sørge for at nulstille "
-"konfigurationen til standardkonfigurationen ved at slette ~/.cinnamon/"
-"configs/qredshift@quintao/qredshift@quintao.json.\n"
-"Du vil miste alle dine konfigurationer."
+"konfigurationen til standardkonfigurationen ved at slette ~/.config/cinnamon/"
+"spices/qredshift@quintao/qredshift@quintao.json.\n"
+"Alle dine indstillinger, vil gå tabt."
 
 #. settings-schema.json->textInfo->description
 msgid ""
-"If you like and use this applet take the time to visit it's page on Cinnamon "
-"Spices and give it a star. You only need a github account to do this."
+"If you like and use this applet take the time to visit it's page on Github "
+"and give it a star."
 msgstr ""
-"Bruger du dette panelprogram og kan lide det, så besøg venligst dets side på "
-"Cinnamon Spices og giv det en stjerne. Du har kun brug for en githubkonto "
-"for at gøre det."
+"Hvis du bruger denne applet, og kan lide den, så brug lidt tid på at besøge "
+"den på Github og giv den en stjerne."
+
+#. settings-schema.json->btnOpenGithub->description
+msgid "QRedshift at GitHub"
+msgstr "QRedshift på GitHub"
+
+#. settings-schema.json->btnOpenGithubIssue->description
+msgid "Submit an Issue"
+msgstr "Rapporter et problem"
+
+#. settings-schema.json->autoCheckUpdate->description
+msgid "Automatically check for updates"
+msgstr "Søg automatisk efter opdatering"
+
+#. settings-schema.json->checkUpdateInterval->units
+msgid "minutes"
+msgstr "minutter"
+
+#. settings-schema.json->checkUpdateInterval->description
+msgid "Check update interval"
+msgstr "Opdateringsinterval"
+
+#. settings-schema.json->btnUpdate->description
+msgid "Check For Updates"
+msgstr "Søg efter opdatering"
+
+#~ msgid "Native geoclue on redshift can make the experience slow."
+#~ msgstr "Den indbyggede Geoclue, kan få redshift til at virke langsom."

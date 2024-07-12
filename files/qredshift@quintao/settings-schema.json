@@ -379,15 +379,13 @@
   "locationRemote": {
     "type": "checkbox",
     "default": true,
-    "description": "Remote Location",
-    "tooltip": "Native geoclue on redshift can make the experience slow."
+    "description": "Remote Location"
   },
   "locationUpdate": {
     "type": "button",
     "description": "Update Location",
     "dependency": "locationRemote=true",
-    "callback": "set_location",
-    "tooltip": "Native geoclue on redshift can make the experience slow."
+    "callback": "set_location"
   },
     "locationCity": {
     "type": "entry",
