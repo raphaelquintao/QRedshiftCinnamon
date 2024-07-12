@@ -39,6 +39,7 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
     - mipsel - 32-bit MIPS (Little Endian)
     - powerpc64le - 64-bit PowerPC (Little Endian)
     - s390x - IBM System/390 (64-bit)
+  * Updated Danish and Portuguese(Brazil) Translations
 * 2.0.3
   * Max temperature increased to 12000k
 * 2.0.2
