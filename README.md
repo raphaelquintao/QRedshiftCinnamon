@@ -4,10 +4,6 @@ A Cinnamon applet that makes the color of your computer's display adapt to the t
 
 Original Repository: [https://github.com/raphaelquintao/QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon)
 
-## Downloads
-![downloads](https://quintao.ninja/qghs/raphaelquintao/QRedshiftCinnamon/releases/downloads/image?fg=e6edf3!)
-
-
 ## Installation
 
 ```shell
@@ -30,6 +26,19 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
 * Independent of redshift package.
 
 ## Changelog
+* 2.0.4
+  * Fixed a bug when changing latitude/longitude manually.
+  * Clicking and dragging the slider now follows the step parameter.
+  * Added support for the most common architectures
+    - x86_64 - 64-bit x86 
+    - i386, i486, i586, i686 - 32-bit x86
+    - aarch64 - 64-bit ARM
+    - armv7l - 32-bit ARM
+    - armv5tel - ARMv5
+    - mips64el - 64-bit MIPS (Little Endian)
+    - mipsel - 32-bit MIPS (Little Endian)
+    - powerpc64le - 64-bit PowerPC (Little Endian)
+    - s390x - IBM System/390 (64-bit)
 * 2.0.3
   * Max temperature increased to 12000k
 * 2.0.2

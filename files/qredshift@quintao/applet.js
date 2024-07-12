@@ -24,7 +24,7 @@ function _(str) {
   return Gettext.dgettext(UUID, str);
 }
 
-global.DEBUG = true;
+global.DEBUG = false;
 
 
 /** @type QUtils */
@@ -97,7 +97,20 @@ class QRedshift extends Applet.TextIconApplet {
   /** @type number */
   last_update = 0;
 
-  supported_archs = ["x86_64"];
+  archs = {
+    supported: ["x86_64", "i686", "aarch64", "armv7l", "armv5tel", "mips64el", "mipsel", "powerpc64le", "s390x", "i386", "i486", "i586"],
+    binaries: ["x86_64", "i686", "aarch64", "armv7l", "armv5tel", "mips64el", "mipsel", "powerpc64le", "s390x"],
+    equivalent: {
+      'i686': ["i386", "i486", "i586"]
+    }
+  }
+
+  binary_suffix(arch) {
+    if(this.archs.binaries.includes(arch)) return arch;
+    for (let a in this.archs.equivalent) if(this.archs.equivalent[a].includes(a)) return a;
+    return '';
+  }
+
 
   // Options
   opt = {
@@ -173,7 +186,7 @@ class QRedshift extends Applet.TextIconApplet {
     this.arch = QUtils.architeture();
 
 
-    this.bin_path = `${this.metadata.path}/bin/qredshift_${this.arch}`;
+    this.bin_path = `${this.metadata.path}/bin/qredshift_${this.binary_suffix(this.arch)}`;
 
     // Bind Settings
     this.settings = new Settings.AppletSettings(this.opt, metadata.uuid, instance_id);
@@ -263,6 +276,8 @@ class QRedshift extends Applet.TextIconApplet {
     this.settings.bind('checkUpdateInterval', 'checkUpdateInterval', (v) => {qLOG('checkUpdateInterval', v);});
 
     this.settings.bind('debugToggle', 'debug', (value) => {global.DEBUG = value;}, null);
+    global.DEBUG = this.opt.debug;
+
 
     qLOG('checkUpdateInterval', this.opt.checkUpdateInterval);
 
@@ -346,7 +361,7 @@ class QRedshift extends Applet.TextIconApplet {
     this.on_location_update();
 
 
-    if (this.supported_archs.includes(this.arch)) {
+    if (this.archs.supported.includes(this.arch)) {
       // Make binary executable
       QUtils.spawn_command_line_sync_string_response(`chmod +x ${this.bin_path}`);
 
@@ -648,7 +663,7 @@ class QRedshift extends Applet.TextIconApplet {
       this.menu_info_section.addMenuItem(this.menu_wayland_info, 4);
     }
 
-    if (!this.supported_archs.includes(this.arch) && !this.menu_arch_info) {
+    if (!this.archs.supported.includes(this.arch) && !this.menu_arch_info) {
       this.set_applet_label(_("Unsupported architecture") + ` ${this.arch}`);
       // this.hide_applet_label(false);
       this.menu_arch_info = new QPopupHeader({
@@ -709,7 +724,6 @@ class QRedshift extends Applet.TextIconApplet {
 
 
   on_shortcut_change() {
-
     if (this.opt.keyBrightnessUp)
       Main.keybindingManager.addHotKey("keyBrightnessUp", this.opt.keyBrightnessUp, (event) => {
         this.db_Slider._setValueEmit(this.db_Slider.value + this.opt.stepBright);
@@ -799,8 +813,10 @@ class QRedshift extends Applet.TextIconApplet {
 
     let calc = new QSunCalc.SunCalc();
 
-    if (this.opt.locationLatitude != '0' && this.opt.locationLongitude != '0') {
-      let info = calc.getTimes(new Date(), this.opt.locationLatitude, this.opt.locationLongitude);
+    let regex = /^-?\d+(\.\d+)/;
+
+    if (this.opt.locationLatitude.match(regex) && this.opt.locationLongitude.match(regex)) {
+      let info = calc.getTimes(new Date(), parseFloat(this.opt.locationLatitude), parseFloat(this.opt.locationLongitude));
       let sunset = info.sunset.toLocaleTimeString();
       let sunrise = info.sunrise.toLocaleTimeString();
 
@@ -1079,7 +1095,7 @@ class QRedshift extends Applet.TextIconApplet {
 
     this.update();
 
-    if (this.wayland || !this.supported_archs.includes(this.arch)) return;
+    if (this.wayland || !this.archs.supported.includes(this.arch)) return;
 
     if (this.timeout) {
       Mainloop.source_remove(this.timeout);
@@ -1093,7 +1109,7 @@ class QRedshift extends Applet.TextIconApplet {
   }
 
   update() {
-    qLOG("UPDATE", this.opt.enabled);
+    qLOG("UPDATE!", this.opt.enabled);
 
     // if (this.opt.enabled) {
 
@@ -1135,7 +1151,7 @@ class QRedshift extends Applet.TextIconApplet {
       qLOG("QRedshift", "Wayland not supported");
       return;
     }
-    if (!this.supported_archs.includes(this.arch)) {
+    if (!this.archs.supported.includes(this.arch)) {
       qLOG("QRedshift", `Architeture '${this.arch}' not supported`);
       return;
     }
@@ -1147,7 +1163,7 @@ class QRedshift extends Applet.TextIconApplet {
       qLOG("QRedshift", "Wayland not supported");
       return;
     }
-    if (!this.supported_archs.includes(this.arch)) {
+    if (!this.archs.supported.includes(this.arch)) {
       qLOG("QRedshift", `Architeture '${this.arch}' not supported`);
       return;
     }
@@ -1259,7 +1275,7 @@ class QRedshift extends Applet.TextIconApplet {
         QUtils.show_info_notification(resp);
       }
     }).catch(reason => {
-        QUtils.show_error_notification(reason);
+      QUtils.show_error_notification(reason);
     });
   }
 

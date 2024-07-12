@@ -420,6 +420,10 @@ class QPopupSlider extends QPopupItem {
 
   setValue(value) {
     if (isNaN(value)) throw TypeError('The slider value must be a number');
+    if(value == this._value) return;
+
+    // qLOG('=============================== setValue')
+
     this._value = Math.max(Math.min(value, this.MAX), this.MIN);
     this.infoText.set_text(this._value + this.unit);
     this.slider.queue_repaint();
@@ -432,10 +436,15 @@ class QPopupSlider extends QPopupItem {
   _setValueEmit(value) {
     if (!Number.isInteger(this.STEP)) value = value.toFixed(2);
 
-    this._value = Math.max(Math.min(value, this.MAX), this.MIN);
+    value = Math.max(Math.min(value, this.MAX), this.MIN);
+
+    if(value == this._value) return;
+
+    this._value = value;
 
     this.infoText.set_text(this._value + this.unit);
     this.slider.queue_repaint();
+    // qLOG('=============================== _setValueEmit')
     this.emit('value-changed', this._value);
   }
 
@@ -586,8 +595,18 @@ class QPopupSlider extends QPopupItem {
     else newvalue = (relX - handleRadius) / (width - 2 * handleRadius);
 
 
-    newvalue *= this.MAX;
-    if (Number.isInteger(this.STEP)) newvalue = Math.round(newvalue);
+    // if (Number.isInteger(this.STEP)) {
+    //   newvalue = (Math.round(newvalue * 20) / 20).toFixed(2);
+      // if(this.STEP < 10) newvalue = (Math.round(newvalue * 20) / 20).toFixed(2);
+      // else newvalue = newvalue.toFixed(1);
+    // }
+
+    // let steps = this.MAX / this.STEP;
+    // qLOG('=>>>>>>>>>>>>>> before', newvalue);
+
+    newvalue = Math.round((newvalue * this.MAX) / this.STEP) * this.STEP;
+    //
+    // qLOG('=>>>>>>>>>>>>>> after', newvalue);
 
     this._setValueEmit(newvalue);
   }
