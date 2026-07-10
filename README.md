@@ -29,7 +29,7 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
 
 Starting with version **2.x**, the applet no longer depends on the original Redshift project. Instead, it uses **QRedshift**, a dedicated backend that I developed specifically for this applet. Here you can find **[Why I Wrote QRedshift](https://github.com/raphaelquintao/QRedshift#why-i-wrote-qredshift)**.
 
-Unfortunately, the Cinnamon Spices distribution model doesn't allow shipping prebuilt binaries. The recommended approach is to have the applet install a C toolchain and development dependencies, then download the source code and compile the backend on the user's machine during installation.
+Unfortunately, the Cinnamon Spices distribution model doesn't allow shipping prebuilt binaries. The recommended approach is to have the applet install a C toolchain and development dependencies, then download the source code and compile the backend on the user's machine at runtime.
 
 I completely understand why that policy exists.
 
