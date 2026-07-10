@@ -25,6 +25,20 @@ curl https://github.com/raphaelquintao/QRedshiftCinnamon/raw/master/install.sh -
 * Smooth transition between day and night.
 * Independent of redshift package.
 
+## Why development moved away from Cinnamon Spices
+
+Starting with version **2.x**, the applet no longer depends on the original Redshift project. Instead, it uses **QRedshift**, a dedicated backend that I developed specifically for this applet. Here you can find **[Why I Wrote QRedshift](https://github.com/raphaelquintao/QRedshift#why-i-wrote-qredshift)**.
+
+Unfortunately, the Cinnamon Spices distribution model doesn't allow shipping prebuilt binaries. The recommended approach is to have the applet install a C toolchain and development dependencies, then download the source code and compile the backend on the user's machine during installation.
+
+I completely understand why that policy exists.
+
+However, this compilation approach doesn't align with the goals of this project. I want it to have a seamless experience.
+
+Therefore, I sadly decided to move development away from Cinnamon Spices in **June 2024**. Coincidentally, that exact month marked the **5th anniversary** of when I first published the applet back in **June 2019**.
+
+The version currently available on Cinnamon Spices will remain there, although I don't know for how long.
+
 ## Changelog
 * 2.0.4
   * Fixed a bug when changing latitude/longitude manually.
