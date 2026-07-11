@@ -69,7 +69,7 @@ The version currently available on Cinnamon Spices will remain there, although I
     * Completely disabled on Wayland (wayland cinnamon compositor don't support gamma ramps yet).
     * Removed remote location option (I don't think anyone uses it. Can be implemented in the future if there are enough requests).
     * Removed dependency of redshift package.
-    * Extension now uses its own backend application: [QRedshift Terminal Application](https://github.com/raphaelquintao/QRedshift).
+    * Extension now uses its own backend application: [QRedshift CLI](https://github.com/raphaelquintao/QRedshift).
     * Added an option to configure step for shortcuts.
 
 <details closed>
