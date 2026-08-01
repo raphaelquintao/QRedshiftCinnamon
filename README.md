@@ -1,5 +1,9 @@
 QRedshift Cinnamon
 ===
+[![GitHub Release](https://img.shields.io/github/v/release/raphaelquintao/QRedshiftCinnamon?include_prereleases&display_name=release&logo=github)](https://github.com/raphaelquintao/QRedshiftCinnamon/releases/latest)
+[![GitHub Release](https://img.shields.io/github/downloads/raphaelquintao/QRedshiftCinnamon/total?labelColor=hsl(210,2%,25%)&color=hsl(20,74%,40%))](https://github.com/raphaelquintao/QRedshiftCinnamon/releases/latest)
+
+
 A Cinnamon applet that makes the color of your computer's display adapt to the time of day, warm at night and like sunlight during the day.
 
 Original Repository: [https://github.com/raphaelquintao/QRedshiftCinnamon](https://github.com/raphaelquintao/QRedshiftCinnamon)
