@@ -1155,7 +1155,7 @@ class QRedshift extends Applet.TextIconApplet {
       qLOG("QRedshift", `Architeture '${this.arch}' not supported`);
       return;
     }
-    Util.spawnCommandLine(`${this.bin_path} -t ${temp} -b ${bright} -g ${gamma}`);
+    Util.spawnCommandLine(`${this.bin_path} -xcb -t ${temp} -b ${bright} -g ${gamma}`);
   }
 
   command_restore() {
@@ -1168,7 +1168,7 @@ class QRedshift extends Applet.TextIconApplet {
       return;
     }
     // QUtils.spawn_command_line_sync_string_response(`${this.bin_path} -t`);
-    Util.spawnCommandLine(`${this.bin_path} -t`);
+    Util.spawnCommandLine(`${this.bin_path} -xcb -t`);
   }
 
   /**
