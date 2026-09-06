@@ -811,6 +811,8 @@ class QRedshift extends Applet.TextIconApplet {
   on_location_update() {
     qLOG('on_location_update');
 
+    this.sun_times_day = new Date().toDateString();
+
     let calc = new QSunCalc.SunCalc();
 
     let regex = /^-?\d+(\.\d+)/;
@@ -1090,6 +1092,11 @@ class QRedshift extends Applet.TextIconApplet {
 
   main_loop() {
     qLOG("MAIN LOOP");
+
+    // Sun times are only valid for the day they were calculated on
+    if (!this.opt.manualNightTime && this.sun_times_day !== new Date().toDateString()) {
+      this.on_location_update();
+    }
 
     this.check_update(false);
 
