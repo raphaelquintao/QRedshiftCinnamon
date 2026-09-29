@@ -399,7 +399,7 @@ class QRedshift extends Applet.TextIconApplet {
 
     this.last_update = new Date().getTime();
 
-    QUtils.spawn_command_line_async_promise(`curl -s ${UPDATE.remote_releases_url_quintao}`)
+    QUtils.spawn_command_line_async_promise(`curl -s --connect-timeout 15 --max-time 60 ${UPDATE.remote_releases_url_quintao}`)
       .then(value => JSON.parse(value))
       .then(value => {
         let {tag_name, assets, body, message} = value;
@@ -468,7 +468,7 @@ class QRedshift extends Applet.TextIconApplet {
       menu.setLabel(_('Updating! Your system may freeze for a few seconds.'));
       menu.setSubLabel(_('Downloading files...'));
       await QUtils.delay(delay);
-      QUtils.spawn_command_line_async_promise(`curl -sS -o ${target}/tmp.tar.gz -L ${browser_download_url}`, null, false)
+      QUtils.spawn_command_line_async_promise(`curl -sS --connect-timeout 15 -o ${target}/tmp.tar.gz -L ${browser_download_url}`, null, false)
         .then(async value => {
           menu.setSubLabel(_('Installing...'));
           await QUtils.delay(delay);
@@ -696,7 +696,7 @@ class QRedshift extends Applet.TextIconApplet {
     // url = 'https://geolocation-db.com/json/';
 
 
-    QUtils.spawn_command_line_async_promise(`curl -s ${url}`).then(value => {
+    QUtils.spawn_command_line_async_promise(`curl -s --connect-timeout 15 --max-time 60 ${url}`).then(value => {
       let {city, country_name, latitude, longitude} = JSON.parse(value);
       this.opt.locationLatitude = `${latitude}`;
       this.opt.locationLongitude = `${longitude}`;
