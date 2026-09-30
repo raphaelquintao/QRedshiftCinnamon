@@ -123,57 +123,17 @@ function spawn_command_line_sync_string_response(command) {
   }
 }
 
+const QSpawn = require('./lib/QSpawn.js');
+
 /**
+ * Non-blocking; see lib/QSpawn.js. Kept here so existing callers need no change.
  * @return {Promise<string>}
  * @exports QUtils.spawn_command_line_async_promise
  */
-function spawn_command_line_async_promise(command, work_dir = null, watch = true) {
-  function _parse(fd) {
-    let output = '';
-    let output_stream_out = new Gio.DataInputStream({base_stream: new Gio.UnixInputStream({fd: fd, close_fd: true})});
+const spawn_command_line_async_promise = QSpawn.spawn_command_line_async_promise;
 
-    let [line, size] = output_stream_out.read_line(null);
-    while (line !== null) {
-      output += line + '\n';
-      [line, size] = output_stream_out.read_line(null);
-    }
-
-    return output;
-  }
-
-  return new Promise((resolve, reject) => {
-    try {
-      let [success, argv] = GLib.shell_parse_argv(command);
-      if (!success) {
-        reject("Failed to parse command");
-      }
-
-      let spawn_flags = GLib.SpawnFlags.SEARCH_PATH;
-      if (watch) spawn_flags = spawn_flags | GLib.SpawnFlags.DO_NOT_REAP_CHILD;
-
-      let [result, pid, stdin, stdout, stderr] = GLib.spawn_async_with_pipes(work_dir, argv, null, spawn_flags, null);
-
-      if (watch) GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, function (pid, status) {
-        GLib.spawn_close_pid(pid);
-      });
-
-      let output = _parse(stdout);
-      let output_err = _parse(stderr);
-
-      // if (output_err) reject(output_err);
-      // else resolve(output);
-      if (result) {
-        resolve(output);
-      } else {
-        reject({error: true, output, output_err});
-      }
-
-    } catch (e) {
-      reject({error: true, message: 'command not found'});
-    }
-
-  });
-}
+/** @exports QUtils.fetch_json_with_fallback  (see lib/QSpawn.js) */
+const fetch_json_with_fallback = QSpawn.fetch_json_with_fallback;
 
 
 /**
