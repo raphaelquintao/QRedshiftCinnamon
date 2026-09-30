@@ -55,3 +55,27 @@ function spawn_command_line_async_promise(command, work_dir = null, watch = true
     });
   });
 }
+
+/**
+ * Fetch JSON with curl from the first URL that answers with something
+ * JSON.parse accepts. Used for the release check so that an unreachable
+ * mirror falls back to the GitHub API instead of failing.
+ *
+ * @param {string[]} urls  tried in order
+ * @param {string} curl_args  extra curl options, e.g. timeouts
+ * @return {Promise<object>}  rejects with {error: true, message} if none work
+ * @exports QSpawn.fetch_json_with_fallback
+ */
+async function fetch_json_with_fallback(urls, curl_args = '--connect-timeout 15 --max-time 60') {
+  let last = 'no urls';
+  for (const url of urls) {
+    try {
+      const body = await spawn_command_line_async_promise(`curl -s ${curl_args} ${url}`);
+      if (body.trim().length === 0) throw new Error('empty response');
+      return JSON.parse(body);
+    } catch (e) {
+      last = `${url}: ${e && e.message ? e.message : e}`;
+    }
+  }
+  throw {error: true, message: 'All release URLs failed; last: ' + last};
+}

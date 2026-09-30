@@ -399,8 +399,9 @@ class QRedshift extends Applet.TextIconApplet {
 
     this.last_update = new Date().getTime();
 
-    QUtils.spawn_command_line_async_promise(`curl -s --connect-timeout 15 --max-time 60 ${UPDATE.remote_releases_url_quintao}`)
-      .then(value => JSON.parse(value))
+    // The mirror is tried first to spare GitHub's API rate limit; the API
+    // itself is the fallback when the mirror does not answer.
+    QUtils.fetch_json_with_fallback([UPDATE.remote_releases_url_quintao, UPDATE.remote_releases_url])
       .then(value => {
         let {tag_name, assets, body, message} = value;
         if (message) throw message;

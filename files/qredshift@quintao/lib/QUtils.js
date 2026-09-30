@@ -132,6 +132,9 @@ const QSpawn = require('./lib/QSpawn.js');
  */
 const spawn_command_line_async_promise = QSpawn.spawn_command_line_async_promise;
 
+/** @exports QUtils.fetch_json_with_fallback  (see lib/QSpawn.js) */
+const fetch_json_with_fallback = QSpawn.fetch_json_with_fallback;
+
 
 /**
  * @exports QUtils.show_notification
