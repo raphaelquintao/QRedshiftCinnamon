@@ -66,16 +66,21 @@ function spawn_command_line_async_promise(command, work_dir = null, watch = true
  * @return {Promise<object>}  rejects with {error: true, message} if none work
  * @exports QSpawn.fetch_json_with_fallback
  */
-async function fetch_json_with_fallback(urls, curl_args = '--connect-timeout 15 --max-time 60') {
-  let last = 'no urls';
-  for (const url of urls) {
-    try {
-      const body = await spawn_command_line_async_promise(`curl -s ${curl_args} ${url}`);
-      if (body.trim().length === 0) throw new Error('empty response');
-      return JSON.parse(body);
-    } catch (e) {
-      last = `${url}: ${e && e.message ? e.message : e}`;
+function fetch_json_with_fallback(urls, curl_args = '--connect-timeout 15 --max-time 60') {
+  // Declared as a plain function on purpose: Cinnamon's module loader only
+  // exports top-level declarations that start with const/var/let/function/
+  // class, so an `async function` here would be invisible to require().
+  return (async () => {
+    let last = 'no urls';
+    for (const url of urls) {
+      try {
+        const body = await spawn_command_line_async_promise(`curl -s ${curl_args} ${url}`);
+        if (body.trim().length === 0) throw new Error('empty response');
+        return JSON.parse(body);
+      } catch (e) {
+        last = `${url}: ${e && e.message ? e.message : e}`;
+      }
     }
-  }
-  throw {error: true, message: 'All release URLs failed; last: ' + last};
+    throw {error: true, message: 'All release URLs failed; last: ' + last};
+  })();
 }
