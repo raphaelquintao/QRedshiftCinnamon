@@ -48,6 +48,21 @@ const tests = [
     done = true;
     assert_eq('main loop not blocked', timer_fired_before_command_finished, true);
   },
+  async function fetch_json_uses_first_url_that_returns_json() {
+    const dir = GLib.dir_make_tmp('qredshift-test-XXXXXX');
+    GLib.file_set_contents(dir + '/bad.json', 'not json');
+    GLib.file_set_contents(dir + '/good.json', '{"tag_name":"v9.9.9"}');
+    const got = await QSpawn.fetch_json_with_fallback([
+      'file:///definitely/missing.json', 'file://' + dir + '/bad.json', 'file://' + dir + '/good.json',
+    ]);
+    assert_eq('fetch_json falls back to the first parseable URL', got, {tag_name: 'v9.9.9'});
+  },
+  async function fetch_json_rejects_when_every_url_fails() {
+    let rejected = false;
+    try { await QSpawn.fetch_json_with_fallback(['file:///definitely/missing.json']); }
+    catch (e) { rejected = !!(e && e.error); }
+    assert_eq('fetch_json rejects when all fail', rejected, true);
+  },
 ];
 
 const loop = GLib.MainLoop.new(null, false);
